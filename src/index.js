@@ -6,6 +6,7 @@ import { createLogger } from 'redux-logger';
 import appReducer from './containers/app/reducer';
 import App from './containers/app';
 import registerServiceWorker from './utils/registerServiceWorker';
+import shoppingCartService from './services/shoppingCartService';
 import './index.css';
 
 const middleware = [];
@@ -17,9 +18,15 @@ if (process.env.NODE_ENV !== 'production') {
 const store = createStore(
   appReducer,
   applyMiddleware(...middleware)
-)
+);
 
-// store.dispatch(getAllProducts())
+// TODO: move to routing onEnter
+shoppingCartService.getData().then((data) => {
+  store.dispatch({
+    type: 'TEST',
+    payload: data
+  });
+});
 
 ReactDOM.render(
   <Provider store={store}>
