@@ -5,9 +5,8 @@ import Immutable from 'immutable'
 import ProductsList from '../../components/productsList'
 import ProductItem from '../../components/productItem'
 
-import {
-  productsContainerSelector
-} from './selectors'
+import { addToCart } from '../cartContainer/actions'
+import { productsContainerSelector } from './selectors'
 
 const ProductsContainer = ({ products = Immutable.List, addToCart }) => {
   const productItems = products.map((product) => (
@@ -32,16 +31,7 @@ const ProductsContainer = ({ products = Immutable.List, addToCart }) => {
   )
 }
 
-const addToCart = id => (
-  {
-    type: 'ADD_TO_CART',
-    payload: id
-  }
-)
-
 export default connect(
   productsContainerSelector,
-  {
-    addToCart
-  }
+  { addToCart }
 )(ProductsContainer)
