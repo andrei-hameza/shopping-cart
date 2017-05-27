@@ -23,7 +23,7 @@ const store = createStore(
 // TODO: move to routing onEnter
 shoppingCartService.getData().then((data) => {
   store.dispatch({
-    type: 'TEST',
+    type: 'RECEIVE_DATA',
     payload: data
   })
 })

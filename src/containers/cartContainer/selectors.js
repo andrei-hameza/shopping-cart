@@ -11,16 +11,14 @@ const cartProducts = createSelector([products, cartProductsIds], (products, ids)
     return Immutable.List()
   }
 
-  const result = ids.reduce((acc, count, id) => {
-    const product = products.find(product => product.get('id') === id)
-    const productId = product.get('id')
+  return ids.reduce((acc, count, id) => {
+    const product = products.get(id)
     const cartProduct = product.set(
       'count',
-      ids.get(productId)
+      ids.get(id)
     )
     return acc.push(cartProduct)
   }, Immutable.List())
-  return result
 })
 
 export function cartContainerSelector (state) {

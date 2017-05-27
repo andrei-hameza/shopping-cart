@@ -1,16 +1,19 @@
 import Immutable from 'immutable'
+import R from 'ramda'
 
 function _receiveData (state, action) {
-  return state.set('data', Immutable.fromJS(action.payload))
+  const data = action.payload
+  const mappedData = data.reduce((acc, item) => R.merge(acc, R.objOf(item.id, item)), {})
+  return state.set('data', Immutable.fromJS(mappedData))
 }
 
 const initialState = Immutable.fromJS({
-  data: []
+  data: Immutable.OrderedMap()
 })
 
 const products = (state = initialState, action) => {
   switch (action.type) {
-    case 'TEST':
+    case 'RECEIVE_DATA':
       return _receiveData(state, action)
     default:
       return state

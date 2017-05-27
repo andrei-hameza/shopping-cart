@@ -4,6 +4,6 @@ export function products (state) {
 
 export function productsContainerSelector (state) {
   return {
-    products: products(state)
+    products: products(state).toList()
   }
 }
