@@ -22,7 +22,7 @@ const ProductItem = ({ product, onAddToCart }) => {
 
 ProductItem.propTypes = {
   product: PropTypes.shape({
-    title: PropTypes.string,
+    name: PropTypes.string,
     price: PropTypes.number
   }),
   onAddToCartClicked: PropTypes.func
