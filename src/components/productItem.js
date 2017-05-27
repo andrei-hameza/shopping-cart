@@ -1,21 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const ProductItem = ({ product, onAddToCart }) => {
+const ProductItem = ({ product, children }) => {
   const name = product.get('name')
   const price = product.get('price')
 
   return (
     <div className='product'>
-      <h4 className='product__name'>
+      <span className='product__name'>
         {name}
-      </h4>
+      </span>
       <span className='product__price'>
         {price}
       </span>
-      <button onClick={onAddToCart}>
-        {'Add'}
-      </button>
+      {children}
     </div>
   )
 }
@@ -25,7 +23,7 @@ ProductItem.propTypes = {
     name: PropTypes.string,
     price: PropTypes.number
   }),
-  onAddToCartClicked: PropTypes.func
+  children: PropTypes.node
 }
 
 export default ProductItem

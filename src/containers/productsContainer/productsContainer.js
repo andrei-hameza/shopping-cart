@@ -15,8 +15,11 @@ const ProductsContainer = ({ products = Immutable.List, addToCart }) => {
       className='products-list__item'
       key={product.get('id')}>
       <ProductItem
-        product={product}
-        onAddToCart={() => addToCart('1')} />
+        product={product}>
+        <button onClick={() => addToCart(product.get('id'))}>
+          {'Add'}
+        </button>
+      </ProductItem>
     </li>
   ))
 
@@ -31,8 +34,8 @@ const ProductsContainer = ({ products = Immutable.List, addToCart }) => {
 
 const addToCart = id => (
   {
-    type: 'MMM',
-    payload: null
+    type: 'ADD_TO_CART',
+    payload: id
   }
 )
 
