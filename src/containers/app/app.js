@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ProductsContainer from '../productsContainer'
+import CartContainer from '../cartContainer'
 import './app.css'
 
 class App extends Component {
@@ -7,6 +8,7 @@ class App extends Component {
     return (
       <div className='shop'>
         <ProductsContainer />
+        <CartContainer />
       </div>
     )
   }
