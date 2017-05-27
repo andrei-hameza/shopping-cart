@@ -9,6 +9,10 @@ function _addToCart (state, action) {
     : state.updateIn(['data', productId], value => ++value)
 }
 
+function _removeFromCart (state, action) {
+  return state.deleteIn(['data', action.payload])
+}
+
 const initialState = Immutable.fromJS({
   data: Immutable.OrderedMap({})
 })
@@ -17,6 +21,8 @@ const products = (state = initialState, action) => {
   switch (action.type) {
     case 'ADD_TO_CART':
       return _addToCart(state, action)
+    case 'REMOVE_FROM_CART':
+      return _removeFromCart(state, action)
     default:
       return state
   }

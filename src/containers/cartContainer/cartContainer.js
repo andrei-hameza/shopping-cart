@@ -5,11 +5,10 @@ import Immutable from 'immutable'
 import ProductsList from '../../components/productsList'
 import ProductItem from '../../components/productItem'
 
-import {
-  cartContainerSelector
-} from './selectors'
+import { removeProductFromCart } from './actions'
+import { cartContainerSelector } from './selectors'
 
-const CartContainer = ({ products = Immutable.List }) => {
+const CartContainer = ({ products = Immutable.List, removeProductFromCart }) => {
   const productItems = products.map((product) => (
     <li
       className='products-list__item'
@@ -19,6 +18,7 @@ const CartContainer = ({ products = Immutable.List }) => {
         <span className='product__count'>
           {`>>${product.get('count')}<<`}
         </span>
+        <span onClick={() => removeProductFromCart(product.get('id'))}>X</span>
       </ ProductItem>
     </li>
   ))
@@ -33,5 +33,6 @@ const CartContainer = ({ products = Immutable.List }) => {
 }
 
 export default connect(
-  cartContainerSelector
+  cartContainerSelector,
+  { removeProductFromCart }
 )(CartContainer)
