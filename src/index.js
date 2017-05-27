@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
 import { createLogger } from 'redux-logger'
 import appReducer from './containers/app/reducer'
@@ -15,9 +15,14 @@ if (process.env.NODE_ENV !== 'production') {
   middleware.push(createLogger())
 }
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+const enhancer = composeEnhancers(
+  applyMiddleware(...middleware)
+)
+
 const store = createStore(
   appReducer,
-  applyMiddleware(...middleware)
+  enhancer
 )
 
 // TODO: move to routing onEnter
