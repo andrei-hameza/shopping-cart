@@ -5,9 +5,16 @@ export const removeProductFromCart = productId => (
   }
 )
 
-export const addToCart = id => (
+export const addToCart = productId => (
   {
     type: 'ADD_TO_CART',
-    payload: id
+    payload: productId
+  }
+)
+
+export const changeSort = sortId => (
+  {
+    type: 'CHANGE_SORTING',
+    payload: sortId
   }
 )
