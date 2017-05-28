@@ -10,6 +10,15 @@ function _addToCart (state, action) {
     : state.updateIn(['data', productId], value => ++value)
 }
 
+function _batchAddToCart (state, action) {
+  const productIds = action.payload
+  const cartProducts = productIds.reduce((acc, productId) => {
+    acc[productId] = R.isNil(acc[productId]) ? 1 : ++acc[productId]
+    return acc
+  }, {})
+  return state.setIn(['data'], Immutable.fromJS(cartProducts))
+}
+
 function _removeFromCart (state, action) {
   return state.deleteIn(['data', action.payload])
 }
@@ -44,6 +53,8 @@ const products = (state = initialState, action) => {
   switch (action.type) {
     case 'ADD_TO_CART':
       return _addToCart(state, action)
+    case 'BATCH_ADD_TO_CART':
+      return _batchAddToCart(state, action)
     case 'REMOVE_FROM_CART':
       return _removeFromCart(state, action)
     case 'CHANGE_SORTING':

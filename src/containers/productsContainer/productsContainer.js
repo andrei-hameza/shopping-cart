@@ -5,10 +5,10 @@ import Immutable from 'immutable'
 import ProductsList from '../../components/productsList'
 import ProductItem from '../../components/productItem'
 
-import { addToCart } from '../cartContainer/actions'
+import { addToCart, autofillCart } from '../cartContainer/actions'
 import { productsContainerSelector } from './selectors'
 
-const ProductsContainer = ({ products = Immutable.List, addToCart }) => {
+const ProductsContainer = ({ products = Immutable.List, addToCart, autofillCart }) => {
   const productItems = products.map((product) => (
     <li
       className='products-list__item'
@@ -24,6 +24,10 @@ const ProductsContainer = ({ products = Immutable.List, addToCart }) => {
 
   return (
     <ProductsList>
+      <button
+        onClick={() => autofillCart()}>
+        Random
+      </button>
       <ul className='products-list'>
         {productItems}
       </ul>
@@ -33,5 +37,5 @@ const ProductsContainer = ({ products = Immutable.List, addToCart }) => {
 
 export default connect(
   productsContainerSelector,
-  { addToCart }
+  { addToCart, autofillCart }
 )(ProductsContainer)

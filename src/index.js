@@ -4,13 +4,14 @@ import Immutable from 'immutable'
 import { createStore, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
 import { createLogger } from 'redux-logger'
+import thunk from 'redux-thunk'
 import appReducer from './containers/app/reducer'
 import App from './containers/app'
 import registerServiceWorker from './utils/registerServiceWorker'
 import shoppingCartService from './services/shoppingCartService'
 import './index.css'
 
-const middleware = []
+const middleware = [ thunk ]
 
 if (process.env.NODE_ENV !== 'production') {
   middleware.push(createLogger())
