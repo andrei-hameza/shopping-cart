@@ -1,0 +1,52 @@
+@mixin clearfix {
+
+  &:after {
+    display: table;
+    clear: both;
+    content:'';
+  }
+}
+
+.l-wrap {
+  max-width: 1140px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.l-app {
+  @include clearfix;
+
+  & .grid-item {
+    padding-left: 10px;
+    padding-right: 10px;
+
+    @media (min-width: 700px) {
+      padding-left: 10px;
+      padding-right: 10px;
+      float: left;
+    }
+  }
+
+  & .l-sidebar {
+    @media (min-width: 700px) {
+      width: percentage(4/12);
+      float: left;
+    }
+
+    @media (min-width: 1200px) {
+      width: percentage(3.6/12);
+      margin-top: 0;
+    }
+  }
+  & .l-main {
+    @media (min-width: 700px) {
+      width: percentage(8/12);
+      margin-top: 0;
+      float: right;
+    }
+
+    @media (min-width: 1200px) {
+      width: percentage(8.4/12);
+    }
+  }
+}

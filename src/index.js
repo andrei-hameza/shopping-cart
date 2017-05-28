@@ -9,7 +9,7 @@ import appReducer from './containers/app/reducer'
 import App from './containers/app'
 import registerServiceWorker from './utils/registerServiceWorker'
 import shoppingCartService from './services/shoppingCartService'
-import './index.css'
+import './styles/index.css'
 
 const middleware = [ thunk ]
 

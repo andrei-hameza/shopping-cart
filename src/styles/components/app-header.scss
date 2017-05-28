@@ -1,0 +1,25 @@
+.app-header {
+  background-color: #FFF;
+
+  &__inner {
+    border-bottom: 1px solid #EEE;
+    text-align: center;
+  }
+
+  &__logo {
+    display: inline-block;
+    padding: 0 20px;
+
+    & > .fa {
+      font-size: 35px;
+      color: $primary-color;
+      vertical-align: middle;
+    }
+  }
+
+  &__title {
+    line-height: 100px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
