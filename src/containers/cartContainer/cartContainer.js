@@ -10,12 +10,13 @@ import SortingItem from '../../components/sortingItem'
 import {
   removeProductFromCart,
   changeSort,
-  clearCart
+  clearCart,
+  purchaseProducts
 } from './actions'
 import { cartContainerSelector } from './selectors'
 import { SortingConstants } from '../../constants/sortingConstants'
 
-const CartContainer = ({ products = Immutable.List, currentSorting, productsTotalCost, removeProductFromCart, changeSort, clearCart }) => {
+const CartContainer = ({ products = Immutable.List, currentSorting, productsTotalCost, status, removeProductFromCart, changeSort, clearCart, purchaseProducts }) => {
   const productItems = products.map((product) => (
     <li
       className='products-list__item'
@@ -51,11 +52,17 @@ const CartContainer = ({ products = Immutable.List, currentSorting, productsTota
       <ul className='products-list'>
         {productItems}
       </ul>
+      <button onClick={purchaseProducts}>
+        Purchase
+      </button>
+      <span>
+        {status}
+      </span>
     </ProductsList>
   )
 }
 
 export default connect(
   cartContainerSelector,
-  { removeProductFromCart, changeSort, clearCart }
+  { removeProductFromCart, changeSort, clearCart, purchaseProducts }
 )(CartContainer)

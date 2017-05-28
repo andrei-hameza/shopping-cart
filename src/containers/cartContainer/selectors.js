@@ -12,6 +12,10 @@ export function currentSorting (state) {
   return state.getIn(['cart', 'sorting'])
 }
 
+export function cartPurchaseStatus (state) {
+  return state.getIn(['cart', 'status'])
+}
+
 // TODO: refactorig
 // 1. Comparators to utils
 // 2. localeCompare for strings
@@ -63,6 +67,7 @@ export function cartContainerSelector (state) {
   return {
     productsTotalCost: productsTotalCost(state),
     currentSorting: currentSorting(state),
-    products: cartProducts(state)
+    products: cartProducts(state),
+    status: cartPurchaseStatus(state)
   }
 }

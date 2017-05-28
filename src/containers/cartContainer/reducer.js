@@ -46,7 +46,8 @@ function _changeSorting (state, action) {
 
 const initialState = Immutable.fromJS({
   data: Immutable.OrderedMap({}),
-  sorting: {}
+  sorting: {},
+  status: ''
 })
 
 const products = (state = initialState, action) => {
@@ -59,6 +60,13 @@ const products = (state = initialState, action) => {
       return _removeFromCart(state, action)
     case 'CHANGE_SORTING':
       return _changeSorting(state, action)
+    case 'PURCHASE_IN_PROGRESS':
+      return state.set('status', 'Processing...')
+    case 'PURCHASE_SUCCESS':
+      return initialState.set('status', 'Purchase completed')
+    case 'PURCHASE_FAILED':
+      return state.set('status', 'Purchase failed')
+    case 'CLEAR_PURCHASE_STATUS':
     case 'CLEAR_CART':
       return initialState
     default:

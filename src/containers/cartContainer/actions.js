@@ -1,3 +1,4 @@
+import shoppingCartService from '../../services/shoppingCartService'
 import generateRandomSampleFromCollection from '../../utils/generateRandomSampleFromCollection'
 
 export const removeProductFromCart = productId => (
@@ -29,6 +30,16 @@ export const autofillCart = () => (dispatch, getState) => {
     type: 'BATCH_ADD_TO_CART',
     payload: randomProducts
   })
+}
+
+export const purchaseProducts = () => (dispatch, getState) => {
+  const state = getState()
+  const products = state.getIn(['products', 'data']).toJS()
+  dispatch({ type: 'PURCHASE_IN_PROGRESS' })
+  shoppingCartService.sendData(products).then(() => {
+    dispatch({ type: 'PURCHASE_SUCCESS' })
+    setTimeout(dispatch, 1000, { type: 'CLEAR_PURCHASE_STATUS' })
+  }).catch(() => dispatch({ type: 'PURCHASE_FAILED' }))
 }
 
 export const changeSort = sortId => (
