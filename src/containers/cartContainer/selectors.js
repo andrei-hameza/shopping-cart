@@ -49,8 +49,19 @@ const cartProducts = createSelector(
   }
 )
 
+const productsTotalCost = createSelector(
+  [products, cartProductsIds],
+  (products, cartProductsIds) => {
+    return cartProductsIds.reduce((acc, productAmount, productId) => {
+      const sum = acc + products.getIn([productId, 'price']) * productAmount
+      return sum
+    }, 0)
+  }
+)
+
 export function cartContainerSelector (state) {
   return {
+    productsTotalCost: productsTotalCost(state),
     currentSorting: currentSorting(state),
     products: cartProducts(state)
   }

@@ -15,7 +15,7 @@ import {
 import { cartContainerSelector } from './selectors'
 import { SortingConstants } from '../../constants/sortingConstants'
 
-const CartContainer = ({ products = Immutable.List, currentSorting, removeProductFromCart, changeSort, clearCart }) => {
+const CartContainer = ({ products = Immutable.List, currentSorting, productsTotalCost, removeProductFromCart, changeSort, clearCart }) => {
   const productItems = products.map((product) => (
     <li
       className='products-list__item'
@@ -44,6 +44,9 @@ const CartContainer = ({ products = Immutable.List, currentSorting, removeProduc
       <button onClick={clearCart}>
         Clear
       </button>
+      <span>
+        Total: {productsTotalCost}
+      </span>
       {sortingItems}
       <ul className='products-list'>
         {productItems}
