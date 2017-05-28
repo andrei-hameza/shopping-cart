@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import ProductsContainer from '../productsContainer'
 import CartContainer from '../cartContainer'
 import AppHeader from '../../components/appHeader'
-import './app.css'
 
 class App extends Component {
   render () {
