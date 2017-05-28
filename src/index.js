@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import Immutable from 'immutable'
 import { createStore, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
 import { createLogger } from 'redux-logger'
@@ -20,10 +21,25 @@ const enhancer = composeEnhancers(
   applyMiddleware(...middleware)
 )
 
+let persistedState
+
+try {
+  persistedState = window.localStorage.getItem('shoppingCartApp')
+  ? JSON.parse(window.localStorage.getItem('shoppingCartApp'))
+  : {}
+} catch (e) {
+  persistedState = {}
+}
+
 const store = createStore(
   appReducer,
+  Immutable.fromJS(persistedState),
   enhancer
 )
+
+store.subscribe(() => {
+  window.localStorage.setItem('shoppingCartApp', JSON.stringify(store.getState().toJS()))
+})
 
 // TODO: move to routing onEnter
 shoppingCartService.getData().then((data) => {

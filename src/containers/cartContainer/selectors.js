@@ -12,6 +12,10 @@ export function currentSorting (state) {
   return state.getIn(['cart', 'sorting'])
 }
 
+// TODO: refactorig
+// 1. Comparators to utils
+// 2. localeCompare for strings
+// 3. Issue with preserving order
 const cartProducts = createSelector(
   [products, cartProductsIds, currentSorting],
   (products, ids, currentSorting) => {
