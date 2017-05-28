@@ -3,7 +3,7 @@
         "age": 0,
         "carrier": "N/A",
         "id": "motorola-xoom-with-wi-fi",
-        "price": 3.5,
+        "price": 1.5,
         "imageUrl": "img/phones/motorola-xoom-with-wi-fi.0.jpg",
         "name": "Motorola XOOM\u2122 with Wi-Fi",
         "snippet": "The Next, Next Generation\r\n\r\nExperience the future with Motorola XOOM with Wi-Fi, the world's first tablet powered by Android 3.0 (Honeycomb)."
@@ -20,7 +20,7 @@
     {
         "age": 2,
         "carrier": "AT&T",
-        "price": 3.5,
+        "price": 2.5,
         "id": "motorola-atrix-4g",
         "imageUrl": "img/phones/motorola-atrix-4g.0.jpg",
         "name": "MOTOROLA ATRIX\u2122 4G",
@@ -30,7 +30,7 @@
         "age": 3,
         "carrier": "N/A",
         "id": "dell-streak-7",
-        "price": 3.5,
+        "price": 4.5,
         "imageUrl": "img/phones/dell-streak-7.0.jpg",
         "name": "Dell Streak 7",
         "snippet": "Introducing Dell\u2122 Streak 7. Share photos, videos and movies together. It\u2019s small enough to carry around, big enough to gather around."
@@ -38,7 +38,7 @@
     {
         "age": 4,
         "carrier": "Cellular South",
-        "price": 3.5,
+        "price": 2.5,
         "id": "samsung-gem",
         "imageUrl": "img/phones/samsung-gem.0.jpg",
         "name": "Samsung Gem\u2122",
@@ -47,7 +47,7 @@
     {
         "age": 5,
         "carrier": "Dell",
-        "price": 3.5,
+        "price": 1.5,
         "id": "dell-venue",
         "imageUrl": "img/phones/dell-venue.0.jpg",
         "name": "Dell Venue",
@@ -56,7 +56,7 @@
     {
         "age": 6,
         "carrier": "Best Buy",
-        "price": 3.5,
+        "price": 8.5,
         "id": "nexus-s",
         "imageUrl": "img/phones/nexus-s.0.jpg",
         "name": "Nexus S",
@@ -65,7 +65,7 @@
     {
         "age": 7,
         "carrier": "Cellular South",
-        "price": 3.5,
+        "price": 10.5,
         "id": "lg-axis",
         "imageUrl": "img/phones/lg-axis.0.jpg",
         "name": "LG Axis",
@@ -75,7 +75,7 @@
         "age": 8,
         "carrier": "N/A",
         "id": "samsung-galaxy-tab",
-        "price": 3.5,
+        "price": 2.5,
         "imageUrl": "img/phones/samsung-galaxy-tab.0.jpg",
         "name": "Samsung Galaxy Tab\u2122",
         "snippet": "Feel Free to Tab\u2122. The Samsung Galaxy Tab\u2122 brings you an ultra-mobile entertainment experience through its 7\u201d display, high-power processor and Adobe\u00ae Flash\u00ae Player compatibility."
@@ -92,7 +92,7 @@
     {
         "age": 10,
         "carrier": "Verizon",
-        "price": 3.5,
+        "price": 4.5,
         "id": "droid-2-global-by-motorola",
         "imageUrl": "img/phones/droid-2-global-by-motorola.0.jpg",
         "name": "DROID\u2122 2 Global by Motorola",
@@ -101,7 +101,7 @@
     {
         "age": 11,
         "carrier": "Verizon",
-        "price": 3.5,
+        "price": 5.5,
         "id": "droid-pro-by-motorola",
         "imageUrl": "img/phones/droid-pro-by-motorola.0.jpg",
         "name": "DROID\u2122 Pro by Motorola",
@@ -110,7 +110,7 @@
     {
         "age": 12,
         "carrier": "AT&T",
-        "price": 3.5,
+        "price": 9.5,
         "id": "motorola-bravo-with-motoblur",
         "imageUrl": "img/phones/motorola-bravo-with-motoblur.0.jpg",
         "name": "MOTOROLA BRAVO\u2122 with MOTOBLUR\u2122",
@@ -119,7 +119,7 @@
     {
         "age": 13,
         "carrier": "T-Mobile",
-        "price": 3.5,
+        "price": 8.5,
         "id": "motorola-defy-with-motoblur",
         "imageUrl": "img/phones/motorola-defy-with-motoblur.0.jpg",
         "name": "Motorola DEFY\u2122 with MOTOBLUR\u2122",
@@ -128,7 +128,7 @@
     {
         "age": 14,
         "carrier": "T-Mobile",
-        "price": 3.5,
+        "price": 6,
         "id": "t-mobile-mytouch-4g",
         "imageUrl": "img/phones/t-mobile-mytouch-4g.0.jpg",
         "name": "T-Mobile myTouch 4G",
@@ -137,7 +137,7 @@
     {
         "age": 15,
         "carrier": "US Cellular",
-        "price": 3.5,
+        "price": 6,
         "id": "samsung-mesmerize-a-galaxy-s-phone",
         "imageUrl": "img/phones/samsung-mesmerize-a-galaxy-s-phone.0.jpg",
         "name": "Samsung Mesmerize\u2122 a Galaxy S\u2122 phone",
@@ -146,7 +146,7 @@
     {
         "age": 16,
         "carrier": "Sprint",
-        "price": 3.5,
+        "price": 4,
         "id": "sanyo-zio",
         "imageUrl": "img/phones/sanyo-zio.0.jpg",
         "name": "SANYO ZIO",
