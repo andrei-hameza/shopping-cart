@@ -59,6 +59,8 @@ const products = (state = initialState, action) => {
       return _removeFromCart(state, action)
     case 'CHANGE_SORTING':
       return _changeSorting(state, action)
+    case 'CLEAR_CART':
+      return initialState
     default:
       return state
   }

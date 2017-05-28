@@ -7,6 +7,13 @@ export const removeProductFromCart = productId => (
   }
 )
 
+export const clearCart = () => (
+  {
+    type: 'CLEAR_CART',
+    payload: null
+  }
+)
+
 export const addToCart = productId => (
   {
     type: 'ADD_TO_CART',
