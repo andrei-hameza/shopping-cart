@@ -11,8 +11,7 @@ const reducers = {
 const keys = R.keys(reducers)
 
 export default function appReducer (state = Immutable.Map(), action) {
-  const newState = R.reduce((currentState, key) => {
+  return R.reduce((currentState, key) => {
     return currentState.update(key, (stateChunk) => reducers[key](stateChunk, action, state))
   }, state, keys)
-  return newState
 }
