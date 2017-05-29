@@ -65,7 +65,7 @@ const createCustomSelector = createSelectorCreator((selector) => {
 const sortedProductsInCart = createCustomSelector(
   [productsInCart, currentSorting],
   (productsInCart, currentSorting) => {
-    if (currentSorting.size && productsInCart.size) {
+    if (R.path(['size'], currentSorting) && R.path(['size'], productsInCart)) {
       const sortDirection = currentSorting.get('direction')
       const comparator = sortDirection === SortingConstants.Directions.ASCENDING
         ? (a, b) => a < b ? -1 : a > b ? 1 : 0

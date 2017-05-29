@@ -26,7 +26,7 @@ let persistedState
 
 try {
   persistedState = window.localStorage.getItem('shoppingCartApp')
-    ? JSON.parse(window.localStorage.getItem('shoppingCartApp'))
+    ? JSON.parse(window.localStorage.getItem('shoppingCartApp')) || {}
     : {}
 } catch (e) {
   persistedState = {}
@@ -39,7 +39,15 @@ const store = createStore(
 )
 
 store.subscribe(() => {
-  window.localStorage.setItem('shoppingCartApp', JSON.stringify({ cart: store.getState().get('cart').toJS() }))
+  window.localStorage
+    .setItem('shoppingCartApp', JSON.stringify({
+      cart: {
+        data: store.getState().getIn(['cart', 'data']).toJS(),
+        sorting: {},
+        status: ''
+      }
+    })
+  )
 })
 
 // TODO: move to routing onEnter
