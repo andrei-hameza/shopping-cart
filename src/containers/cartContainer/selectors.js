@@ -1,6 +1,6 @@
 import Immutable from 'immutable'
 import { products } from '../productsContainer/selectors'
-import { createSelector, createSelectorCreator } from 'reselect'
+import { createSelector, createSelectorCreator, createStructuredSelector } from 'reselect'
 import { SortingConstants } from '../../constants/sortingConstants'
 import { sortBy } from '../../utils/sortBy'
 import R from 'ramda'
@@ -62,10 +62,10 @@ const createCustomSelector = createSelectorCreator((selector) => {
   }
 })
 
-const sortedProductsInCart = createCustomSelector(
+export const sortedProductsInCart = createCustomSelector(
   [productsInCart, currentSorting],
   (productsInCart, currentSorting) => {
-    if (R.path(['size'], currentSorting) && R.path(['size'], productsInCart)) {
+    if (R.path(['size'])(currentSorting) && R.path(['size'])(productsInCart)) {
       const sortDirection = currentSorting.get('direction')
       const comparator = sortDirection === SortingConstants.Directions.ASCENDING
         ? (a, b) => a < b ? -1 : a > b ? 1 : 0
@@ -90,12 +90,9 @@ export const productsTotalCost = createSelector(
   }
 )
 
-// TODO: replace with structuredSelector
-export function cartContainerSelector (state) {
-  return {
-    productsTotalCost: productsTotalCost(state),
-    currentSorting: currentSorting(state),
-    products: sortedProductsInCart(state),
-    status: cartPurchaseStatus(state)
-  }
-}
+export const cartContainerSelector = createStructuredSelector({
+  productsTotalCost: productsTotalCost,
+  currentSorting: currentSorting,
+  products: sortedProductsInCart,
+  status: cartPurchaseStatus
+})
