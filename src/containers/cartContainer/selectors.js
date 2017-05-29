@@ -5,17 +5,45 @@ import { SortingConstants } from '../../constants/sortingConstants'
 import { sortBy } from '../../utils/sortBy'
 import R from 'ramda'
 
+/**
+ * Give the current products' ids in the cart and their amount
+ *
+ * @param {Immutable.Map} [state]
+ * @return {Immutable.OrderedMap}
+ */
+
 export function cartProductsIds (state) {
   return state.getIn(['cart', 'data'])
 }
+
+/**
+ * Give the current sorting in the cart
+ *
+ * @param {Immutable.Map} [state]
+ * @return {Immutable.Map} Empty object when there is no sort { } or { id: String, direction: String }
+ */
 
 export function currentSorting (state) {
   return state.getIn(['cart', 'sorting'])
 }
 
+/**
+ * Give the current purchase status of the cart
+ *
+ * @param {Immutable.Map} [state]
+ * @return {String}
+ */
+
 export function cartPurchaseStatus (state) {
   return state.getIn(['cart', 'status'])
 }
+
+/**
+ * Give the list of products in the cart together with their amount
+ *
+ * @param {Immutable.Map} [state]
+ * @return {Immutable.List}
+ */
 
 export const productsInCart = createSelector(
   [products, cartProductsIds],
@@ -40,6 +68,14 @@ export const productsInCart = createSelector(
   }
 )
 
+/**
+ * Selector creator with custom memoize function which
+ * is used for clever saving the previous order in case of sorting change
+ *
+ * @param {Function}
+ * @return {Function}
+ */
+
 const createCustomSelector = createSelectorCreator((selector) => {
   let prevCurrentSorting
   let prevProductsInCart
@@ -62,6 +98,13 @@ const createCustomSelector = createSelectorCreator((selector) => {
   }
 })
 
+/**
+ * Give the sorted list of products in the cart
+ *
+ * @param {Immutable.Map} [state]
+ * @return {Immutable.List}
+ */
+
 export const sortedProductsInCart = createCustomSelector(
   [productsInCart, currentSorting],
   (productsInCart, currentSorting) => {
@@ -81,6 +124,13 @@ export const sortedProductsInCart = createCustomSelector(
   }
 )
 
+/**
+ * Give the total cost of products in the cart
+ *
+ * @param {Immutable.Map} [state]
+ * @return {Number}
+ */
+
 export const productsTotalCost = createSelector(
   [products, cartProductsIds],
   (products, cartProductsIds) => {
@@ -90,9 +140,15 @@ export const productsTotalCost = createSelector(
   }
 )
 
+/**
+ * Structured selector that returns data for cartContainer compopnent | mapStateToProps
+ *
+ * @param {Immutable.Map} [state]
+ * @return {Object}
+ */
+
 export const cartContainerSelector = createStructuredSelector({
   productsTotalCost: productsTotalCost,
   currentSorting: currentSorting,
-  products: sortedProductsInCart,
   status: cartPurchaseStatus
 })
