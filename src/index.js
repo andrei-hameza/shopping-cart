@@ -24,6 +24,7 @@ const enhancer = composeEnhancers(
 
 let persistedState
 
+// TODO: move to separate enhancer and check private mode
 try {
   persistedState = window.localStorage.getItem('shoppingCartApp')
     ? JSON.parse(window.localStorage.getItem('shoppingCartApp')) || {}
