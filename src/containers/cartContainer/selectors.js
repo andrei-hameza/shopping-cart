@@ -1,8 +1,7 @@
 import Immutable from 'immutable'
 import { products } from '../productsContainer/selectors'
 import { createSelector, createSelectorCreator, createStructuredSelector } from 'reselect'
-import { SortingConstants } from '../../constants/sortingConstants'
-import { sortBy } from '../../utils/sortBy'
+import { sortBy } from '../../utils/sortingHelpers'
 import R from 'ramda'
 
 /**
@@ -48,29 +47,21 @@ export function cartPurchaseStatus (state) {
 export const productsInCart = createSelector(
   [products, cartProductsIds],
   (products, ids) => {
-    if (ids.size === 0) {
+    if (R.pipe(R.prop('size'), R.equals(0))(ids)) {
       return Immutable.List()
     }
-
-    return ids.reduce((acc, count, id) => {
+    const result = ids.reduce((acc, count, id) => {
       const product = products.get(id)
+      return R.isNil(product) ? acc : [...acc, product.set('amount', count)]
+    }, [])
 
-      if (R.isNil(product)) {
-        return acc
-      }
-
-      const cartProduct = product.set(
-        'amount',
-        ids.get(id)
-      )
-      return acc.push(cartProduct)
-    }, Immutable.List())
+    return Immutable.fromJS(result)
   }
 )
 
 /**
  * Selector creator with custom memoize function which
- * is used for clever saving the previous order in case of sorting change
+ * is used for smart saving the previous order in case of sorting change
  *
  * @param {Function}
  * @return {Function}
@@ -109,15 +100,13 @@ export const sortedProductsInCart = createCustomSelector(
   [productsInCart, currentSorting],
   (productsInCart, currentSorting) => {
     if (R.path(['size'])(currentSorting) && R.path(['size'])(productsInCart)) {
-      const sortDirection = currentSorting.get('direction')
-      const comparator = sortDirection === SortingConstants.Directions.ASCENDING
-        ? (a, b) => a < b ? -1 : a > b ? 1 : 0
-        : (b, a) => a < b ? -1 : a > b ? 1 : 0
       const sortId = currentSorting.get('id')
-      const sortedProductsInCart = sortBy(productsInCart.toJS(), product => {
-        const field = product[sortId]
-        return typeof field === 'string' ? field.toUpperCase() : field
-      }, comparator)
+      const sortDirection = currentSorting.get('direction')
+      const sortedProductsInCart = sortBy(
+        productsInCart.toJS(),
+        sortId,
+        sortDirection
+      )
       return Immutable.fromJS(sortedProductsInCart)
     }
     return productsInCart
@@ -150,5 +139,6 @@ export const productsTotalCost = createSelector(
 export const cartContainerSelector = createStructuredSelector({
   productsTotalCost: productsTotalCost,
   currentSorting: currentSorting,
+  products: sortedProductsInCart,
   status: cartPurchaseStatus
 })
