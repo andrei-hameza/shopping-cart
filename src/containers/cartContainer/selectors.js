@@ -3,6 +3,7 @@ import { products } from '../productsContainer/selectors'
 import { createSelector } from 'reselect'
 import { SortingConstants } from '../../constants/sortingConstants'
 import { sortBy } from '../../utils/sortBy'
+import R from 'ramda'
 
 export function cartProductsIds (state) {
   return state.getIn(['cart', 'data'])
@@ -29,6 +30,11 @@ const cartProducts = createSelector(
 
     const productsInCart = ids.reduce((acc, count, id) => {
       const product = products.get(id)
+
+      if (R.isNil(product)) {
+        return acc
+      }
+
       const cartProduct = product.set(
         'amount',
         ids.get(id)
@@ -36,7 +42,7 @@ const cartProducts = createSelector(
       return acc.push(cartProduct)
     }, Immutable.List())
 
-    if (currentSorting.size) {
+    if (currentSorting.size && productsInCart.size) {
       const sortDirection = currentSorting.get('direction')
       const comparator = sortDirection === SortingConstants.Directions.ASCENDING
         ? (a, b) => a < b ? -1 : a > b ? 1 : 0
