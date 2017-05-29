@@ -1,6 +1,14 @@
 import Immutable from 'immutable'
 import R from 'ramda'
 
+/**
+ * Adds received data to the store
+ *
+ * @param {Immutable.Map} [state] old state
+ * @param {Object} [action]
+ * @return {Immutable.Map} new state
+ */
+
 function _receiveData (state, action) {
   const data = action.payload
   const mappedData = data.reduce((acc, item) => R.merge(acc, R.objOf(item.id, item)), {})
@@ -10,6 +18,14 @@ function _receiveData (state, action) {
 const initialState = Immutable.fromJS({
   data: Immutable.OrderedMap()
 })
+
+/**
+ * Products reducer
+ *
+ * @param {Immutable.Map} [state] old state
+ * @param {Object} [action]
+ * @return {Immutable.Map} new state
+ */
 
 export const products = (state = initialState, action) => {
   switch (action.type) {
