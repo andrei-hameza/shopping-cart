@@ -50,7 +50,7 @@ const initialState = Immutable.fromJS({
   status: ''
 })
 
-const products = (state = initialState, action) => {
+export const cart = (state = initialState, action) => {
   switch (action.type) {
     case 'ADD_TO_CART':
       return _addToCart(state, action)
@@ -73,5 +73,3 @@ const products = (state = initialState, action) => {
       return state
   }
 }
-
-export default products

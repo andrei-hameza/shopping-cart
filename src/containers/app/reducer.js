@@ -1,7 +1,7 @@
 import R from 'ramda'
 import Immutable from 'immutable'
-import products from '../productsContainer/reducer'
-import cart from '../cartContainer/reducer'
+import { products } from '../productsContainer/reducer'
+import { cart } from '../cartContainer/reducer'
 
 const reducers = {
   products,
