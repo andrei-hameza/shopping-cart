@@ -1,0 +1,13 @@
+.product {
+  display: flex;
+  justify-content: space-between;
+
+  &__left {
+    width: calc(100% - 150px);
+    padding-right: 50px;
+  }
+
+  &__right {
+    width: 100px;
+  }
+}
