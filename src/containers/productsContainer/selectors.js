@@ -12,17 +12,6 @@ export function products (state) {
 }
 
 /**
- * Give the list of all products
- *
- * @param {Immutable.Map} [state]
- * @return {Immutable.List}
- */
-
-export function productsList (state) {
-  return state.getIn(['products', 'data']).toList()
-}
-
-/**
 * Structured selector that returns data for productsContainer compopnent | mapStateToProps
 *
 * @param {Immutable.Map} [state]
@@ -30,5 +19,5 @@ export function productsList (state) {
 */
 
 export const productsContainerSelector = createStructuredSelector({
-  products: productsList
+  products: products
 })

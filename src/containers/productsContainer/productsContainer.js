@@ -1,41 +1,53 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { compose, pure } from 'recompose'
 import Immutable from 'immutable'
 
+import ProductsArea from '../../components/productsArea'
 import ProductsList from '../../components/productsList'
 import ProductItem from '../../components/productItem'
+import Heading from '../../components/heading'
 
 import { addToCart, autofillCart } from '../cartContainer/actions'
 import { productsContainerSelector } from './selectors'
 
-const ProductsContainer = ({ products = Immutable.List, addToCart, autofillCart }) => {
-  const productItems = products.map((product) => (
-    <li
-      className='products-list__item'
-      key={product.get('id')}>
-      <ProductItem
-        product={product}>
-        <button onClick={() => addToCart(product.get('id'))}>
-          {'Add'}
-        </button>
-      </ProductItem>
-    </li>
-  ))
+const ProductsContainer = ({ products = Immutable.Map(), addToCart, autofillCart }) => {
+  const productItems = products.toList().map((product) => {
+    const id = product.get('id')
+    return (
+      <li
+        className='products-list__item'
+        key={id}>
+        <ProductItem
+          product={product}>
+          <button onClick={addToCart.bind(null, id)}>
+            Add
+          </button>
+        </ProductItem>
+      </li>
+    )
+  })
 
   return (
-    <ProductsList>
+    <ProductsArea>
+      <Heading title='Products' className='products-area__title' />
       <button
-        onClick={() => autofillCart()}>
+        onClick={autofillCart}>
         Random
       </button>
-      <ul className='products-list'>
-        {productItems}
-      </ul>
-    </ProductsList>
+      <ProductsList className='products-area__list'>
+        <ul className='products-list'>
+          {productItems}
+        </ul>
+      </ProductsList>
+    </ProductsArea>
   )
 }
 
-export default connect(
-  productsContainerSelector,
-  { addToCart, autofillCart }
+export default compose(
+  connect(
+    productsContainerSelector,
+    { addToCart, autofillCart }
+  ),
+  pure
 )(ProductsContainer)
