@@ -27,26 +27,26 @@
     }
   }
 
-  & .l-sidebar {
+  & .l-main {
     @media (min-width: 700px) {
-      width: percentage(4/12);
+      width: percentage(7/12);
       float: left;
     }
 
     @media (min-width: 1200px) {
-      width: percentage(3.6/12);
+      width: percentage(8/12);
       margin-top: 0;
     }
   }
-  & .l-main {
+  & .l-sidebar {
     @media (min-width: 700px) {
-      width: percentage(8/12);
+      width: percentage(5/12);
       margin-top: 0;
       float: right;
     }
 
     @media (min-width: 1200px) {
-      width: percentage(8.4/12);
+      width: percentage(4/12);
     }
   }
 }

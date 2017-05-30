@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const ProductsArea = ({ children, ...others }) => (
-  <div className='products-area' {...others}>
+  <div className='products-area l-main' {...others}>
     {children}
   </div>
 )

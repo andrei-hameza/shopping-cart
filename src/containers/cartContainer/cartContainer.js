@@ -41,7 +41,8 @@ const CartContainer = ({ products = Immutable.List(), currentSorting, productsTo
   ))
 
   return (
-    <ProductsList>
+
+    <ProductsList className='cart-area__list l-sidebar'>
       <button onClick={clearCart}>
         Clear
       </button>
