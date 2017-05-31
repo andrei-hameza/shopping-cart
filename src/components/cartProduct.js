@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const CartProduct = ({ product }) => {
+const CartProduct = ({ product, addToCart, removeFromCart }) => {
+  const id = product.get('id')
   const name = product.get('name')
   const amount = product.get('amount')
   const price = product.get('price')
@@ -12,11 +13,15 @@ const CartProduct = ({ product }) => {
         {name}
       </h4>
       <div className='cart-product__counter'>
-        <button className='cart-product__button'>
+        <button
+          className='cart-product__button'
+          onClick={removeFromCart.bind(null, id)}>
           <i className='fa fa-minus' />
         </button>
         <div className='cart-product__amount'>{amount}</div>
-        <button className='cart-product__button'>
+        <button
+          className='cart-product__button'
+          onClick={addToCart.bind(null, id)}>
           <i className='fa fa-plus' />
         </button>
       </div>

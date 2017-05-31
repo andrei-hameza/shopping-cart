@@ -4,8 +4,8 @@ import { SortingConstants } from '../../constants/sortingConstants'
 
 function _addToCart (state, action) {
   const productId = action.payload
-  const id = state.getIn(['data', productId])
-  return R.isNil(id)
+  const amount = state.getIn(['data', productId])
+  return R.isNil(amount)
     ? state.setIn(['data', productId], 1)
     : state.updateIn(['data', productId], value => ++value)
 }
@@ -20,7 +20,11 @@ function _batchAddToCart (state, action) {
 }
 
 function _removeFromCart (state, action) {
-  return state.deleteIn(['data', action.payload])
+  const productId = action.payload
+  const amount = state.getIn(['data', productId])
+  return amount === 1
+    ? state.deleteIn(['data', productId])
+    : state.updateIn(['data', productId], value => --value)
 }
 
 function _changeSorting (state, action) {

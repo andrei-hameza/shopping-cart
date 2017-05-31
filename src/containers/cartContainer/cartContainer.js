@@ -9,7 +9,8 @@ import CartProduct from '../../components/cartProduct'
 import SortingItem from '../../components/sortingItem'
 
 import {
-  removeProductFromCart,
+  addToCart,
+  removeFromCart,
   changeSort,
   clearCart,
   autofillCart,
@@ -23,7 +24,8 @@ const CartContainer = ({
   currentSorting,
   productsTotalCost,
   status,
-  removeProductFromCart,
+  addToCart,
+  removeFromCart,
   changeSort,
   clearCart,
   purchaseProducts,
@@ -32,12 +34,9 @@ const CartContainer = ({
   const productItems = products.map((product) => (
     <ListItem key={product.get('id')}>
       <CartProduct
-        product={product}>
-        <span className='product__amount'>
-          {`>>${product.get('amount')}<<`}
-        </span>
-        <span onClick={() => removeProductFromCart(product.get('id'))}>X</span>
-      </CartProduct>
+        product={product}
+        addToCart={addToCart}
+        removeFromCart={removeFromCart} />
     </ListItem>
   ))
 
@@ -81,7 +80,8 @@ const CartContainer = ({
 export default connect(
   cartContainerSelector,
   {
-    removeProductFromCart,
+    addToCart,
+    removeFromCart,
     changeSort,
     clearCart,
     purchaseProducts,

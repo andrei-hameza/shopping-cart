@@ -1,7 +1,7 @@
 import shoppingCartService from '../../services/shoppingCartService'
 import generateRandomSampleFromCollection from '../../utils/generateRandomSampleFromCollection'
 
-export const removeProductFromCart = productId => (
+export const removeFromCart = productId => (
   {
     type: 'REMOVE_FROM_CART',
     payload: productId
