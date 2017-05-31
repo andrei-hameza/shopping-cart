@@ -1,0 +1,11 @@
+.products-area {
+
+  &__title {
+    font-size: 18px;
+    line-height: 2;
+    color: $secondary-font-color;
+    background-color: #FFF;
+    text-align: center;
+    border: 1px solid #E2EAF0;
+  }
+}
