@@ -11,12 +11,23 @@ import {
   removeProductFromCart,
   changeSort,
   clearCart,
+  autofillCart,
   purchaseProducts
 } from './actions'
 import { cartContainerSelector } from './selectors'
 import { SortingConstants } from '../../constants/sortingConstants'
 
-const CartContainer = ({ products = Immutable.List(), currentSorting, productsTotalCost, status, removeProductFromCart, changeSort, clearCart, purchaseProducts }) => {
+const CartContainer = ({
+  products = Immutable.List(),
+  currentSorting,
+  productsTotalCost,
+  status,
+  removeProductFromCart,
+  changeSort,
+  clearCart,
+  purchaseProducts,
+  autofillCart
+}) => {
   const productItems = products.map((product) => (
     <li
       className='products-list__item'
@@ -43,6 +54,11 @@ const CartContainer = ({ products = Immutable.List(), currentSorting, productsTo
   return (
 
     <ProductsList className='cart-area__list l-sidebar'>
+      <button
+        className='cart-area__button'
+        onClick={autofillCart}>
+        Random
+      </button>
       <button onClick={clearCart}>
         Clear
       </button>
@@ -65,5 +81,11 @@ const CartContainer = ({ products = Immutable.List(), currentSorting, productsTo
 
 export default connect(
   cartContainerSelector,
-  { removeProductFromCart, changeSort, clearCart, purchaseProducts }
+  {
+    removeProductFromCart,
+    changeSort,
+    clearCart,
+    purchaseProducts,
+    autofillCart
+  }
 )(CartContainer)

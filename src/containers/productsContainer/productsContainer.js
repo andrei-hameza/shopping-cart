@@ -32,11 +32,6 @@ const ProductsContainer = ({ products = Immutable.Map(), addToCart, autofillCart
 
   return (
     <ProductsArea>
-      <button
-        className='products-area__button'
-        onClick={autofillCart}>
-        Random
-      </button>
       <Heading title='Products' className='products-area__title' />
       <ProductsList className='products-area__list'>
         <ul className='products-list'>
