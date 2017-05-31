@@ -9,7 +9,7 @@ export const SortingConstants = {
   // ----------------- Sorting Types -----------------
   Types: {
     NAME: 'name',
-    PRICE: 'price',
-    AMOUNT: 'amount'
+    AMOUNT: 'amount',
+    PRICE: 'price'
   }
 }

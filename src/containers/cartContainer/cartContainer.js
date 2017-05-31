@@ -1,13 +1,18 @@
+// libs
 import React from 'react'
 import { connect } from 'react-redux'
 import Immutable from 'immutable'
 import R from 'ramda'
 
+// components
+import CartArea from '../../components/cartArea'
 import List from '../../components/list'
 import ListItem from '../../components/listItem'
 import CartProduct from '../../components/cartProduct'
+import Sorting from '../../components/sorting'
 import SortingItem from '../../components/sortingItem'
 
+// actions
 import {
   addToCart,
   removeFromCart,
@@ -16,7 +21,11 @@ import {
   autofillCart,
   purchaseProducts
 } from './actions'
+
+// selectors
 import { cartContainerSelector } from './selectors'
+
+// constants
 import { SortingConstants } from '../../constants/sortingConstants'
 
 const CartContainer = ({
@@ -43,6 +52,7 @@ const CartContainer = ({
   const sortingItems = R.values(SortingConstants.Types).map((id) => (
     <SortingItem
       key={id}
+      className={`sorting__${id}`}
       id={id}
       title={id}
       sortDirection={currentSorting.get('id') === id ? currentSorting.get('direction') : null}
@@ -50,8 +60,7 @@ const CartContainer = ({
   ))
 
   return (
-
-    <List className='cart-area__list l-sidebar grid-item'>
+    <CartArea>
       <button
         className='cart-area__button'
         onClick={autofillCart}>
@@ -60,10 +69,14 @@ const CartContainer = ({
       <button onClick={clearCart}>
         Clear
       </button>
-      {sortingItems}
-      <ul className='products-list'>
+      <List className='cart-area__list'>
+        <ListItem>
+          <Sorting>
+            {sortingItems}
+          </Sorting>
+        </ListItem>
         {productItems}
-      </ul>
+      </List>
       <span>
         Total: {productsTotalCost}
       </span>
@@ -73,7 +86,7 @@ const CartContainer = ({
       <span>
         {status}
       </span>
-    </List>
+    </CartArea>
   )
 }
 

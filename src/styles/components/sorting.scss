@@ -1,0 +1,42 @@
+@import '../variables.scss';
+
+.sorting {
+  display: flex;
+  padding: 5px 10px;
+
+  &-item {
+    cursor: pointer;
+    user-select: none;
+  }
+
+  &__name {
+    text-align: left;
+    width: $cart-product-name-width;
+  }
+
+  &__amount {
+    width: $cart-product-amount-width;
+    text-align: center;
+  }
+
+  &__price {
+    width: $cart-product-price-width;
+    text-align: right;
+  }
+
+  &-item__title {
+    color: $secondary-font-color;
+    font-size: 14px;
+    padding: 0 5px;
+    text-transform: capitalize;
+    position: relative;
+  }
+
+  &-item__icon {
+    color: $primary-color;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(100%, -50%);
+  }
+}
