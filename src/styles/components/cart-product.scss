@@ -1,0 +1,26 @@
+@import '../variables.scss';
+
+%ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.cart-product {
+  display: flex;
+
+  &__name {
+    @extend %ellipsis;
+    width: $cart-product-name-width;
+  }
+
+  &__amount {
+    @extend %ellipsis;
+    width: $cart-product-amount-width;
+  }
+
+  &__price {
+    @extend %ellipsis;
+    width: $cart-product-price-width;
+  }
+}
