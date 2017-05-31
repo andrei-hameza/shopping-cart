@@ -30,9 +30,8 @@ const CartContainer = ({
   autofillCart
 }) => {
   const productItems = products.map((product) => (
-    <ListItem>
+    <ListItem key={product.get('id')}>
       <CartProduct
-        key={product.get('id')}
         product={product}>
         <span className='product__amount'>
           {`>>${product.get('amount')}<<`}
@@ -53,7 +52,7 @@ const CartContainer = ({
 
   return (
 
-    <List className='cart-area__list l-sidebar'>
+    <List className='cart-area__list l-sidebar grid-item'>
       <button
         className='cart-area__button'
         onClick={autofillCart}>
