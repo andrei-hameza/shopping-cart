@@ -6,6 +6,7 @@
     "classnames": "^2.2.5",
     "font-awesome": "^4.7.0",
     "immutable": "^3.8.1",
+    "npm-font-open-sans": "^1.0.3",
     "nskeymirror": "^0.1.2",
     "ramda": "^0.23.0",
     "react": "^15.5.4",
