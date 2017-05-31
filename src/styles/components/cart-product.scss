@@ -26,11 +26,21 @@
     width: $cart-product-name-width;
   }
 
-  &__amount {
-    @extend %ellipsis;
+  &__counter {
+    display: flex;
     font-size: 14px;
     width: $cart-product-amount-width;
     text-align: center;
+  }
+
+  &__button {
+    color: $primary-color;
+  }
+
+  &__amount {
+    @extend %ellipsis;
+    width: calc(100% - 30px);
+    margin: 0 auto;
   }
 
   &__price {

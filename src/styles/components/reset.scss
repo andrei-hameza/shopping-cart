@@ -12,3 +12,12 @@
 ul {
   list-style-type: none;
 }
+
+button {
+  background: transparent;
+  cursor: pointer;
+  border: none;
+  user-select: none;
+  white-space: nowrap;
+  outline: none;
+}
