@@ -18,7 +18,7 @@ const ProductItem = ({ product, children }) => {
       </div>
       <div className='product__right'>
         <span className='product__price'>
-          {price}
+          {`$ ${price}`}
         </span>
         {children}
       </div>
