@@ -6,6 +6,7 @@ import R from 'ramda'
 
 // components
 import CartArea from '../../components/cartArea'
+import CartAreaFooter from '../../components/cartAreaFooter'
 import List from '../../components/list'
 import ListItem from '../../components/listItem'
 import CartProduct from '../../components/cartProduct'
@@ -77,15 +78,17 @@ const CartContainer = ({
         </ListItem>
         {productItems}
       </List>
-      <span>
-        Total: {productsTotalCost}
-      </span>
-      <button onClick={purchaseProducts}>
-        Purchase
-      </button>
-      <span>
-        {status}
-      </span>
+      <CartAreaFooter>
+        <span>
+          Total: {productsTotalCost}
+        </span>
+        <button onClick={purchaseProducts}>
+          Purchase
+        </button>
+        <span>
+          {status}
+        </span>
+      </CartAreaFooter>
     </CartArea>
   )
 }
