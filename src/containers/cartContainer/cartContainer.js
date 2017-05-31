@@ -3,8 +3,9 @@ import { connect } from 'react-redux'
 import Immutable from 'immutable'
 import R from 'ramda'
 
-import ProductsList from '../../components/productsList'
-import ProductItem from '../../components/productItem'
+import List from '../../components/list'
+import ListItem from '../../components/listItem'
+import CartProduct from '../../components/cartProduct'
 import SortingItem from '../../components/sortingItem'
 
 import {
@@ -29,17 +30,16 @@ const CartContainer = ({
   autofillCart
 }) => {
   const productItems = products.map((product) => (
-    <li
-      className='products-list__item'
-      key={product.get('id')}>
-      <ProductItem
+    <ListItem>
+      <CartProduct
+        key={product.get('id')}
         product={product}>
         <span className='product__amount'>
           {`>>${product.get('amount')}<<`}
         </span>
         <span onClick={() => removeProductFromCart(product.get('id'))}>X</span>
-      </ ProductItem>
-    </li>
+      </CartProduct>
+    </ListItem>
   ))
 
   const sortingItems = R.values(SortingConstants.Types).map((id) => (
@@ -53,7 +53,7 @@ const CartContainer = ({
 
   return (
 
-    <ProductsList className='cart-area__list l-sidebar'>
+    <List className='cart-area__list l-sidebar'>
       <button
         className='cart-area__button'
         onClick={autofillCart}>
@@ -75,7 +75,7 @@ const CartContainer = ({
       <span>
         {status}
       </span>
-    </ProductsList>
+    </List>
   )
 }
 

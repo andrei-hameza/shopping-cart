@@ -1,43 +1,40 @@
+// libs
 import React from 'react'
 import { connect } from 'react-redux'
 import { compose, pure } from 'recompose'
 import Immutable from 'immutable'
 
+// components
 import ProductsArea from '../../components/productsArea'
-import ProductsList from '../../components/productsList'
-import ProductItem from '../../components/productItem'
+import List from '../../components/list'
+import ListItem from '../../components/listItem'
+import Product from '../../components/product'
 import Heading from '../../components/heading'
 
-import { addToCart, autofillCart } from '../cartContainer/actions'
+// actions
+import { addToCart } from '../cartContainer/actions'
+
+// selectors
 import { productsContainerSelector } from './selectors'
 
-const ProductsContainer = ({ products = Immutable.Map(), addToCart, autofillCart }) => {
+const ProductsContainer = ({ products = Immutable.Map(), addToCart }) => {
   const productItems = products.toList().map((product) => {
     const id = product.get('id')
     return (
-      <li
-        className='products-list__item'
-        key={id}>
-        <ProductItem
-          product={product}>
-          <button
-            className='product__purchase-button'
-            onClick={addToCart.bind(null, id)}>
-            Add To Cart
-          </button>
-        </ProductItem>
-      </li>
+      <ListItem key={id}>
+        <Product
+          product={product}
+          addToCart={addToCart.bind(null, id)} />
+      </ListItem>
     )
   })
 
   return (
     <ProductsArea>
       <Heading title='Products' className='products-area__title' />
-      <ProductsList className='products-area__list'>
-        <ul className='products-list'>
-          {productItems}
-        </ul>
-      </ProductsList>
+      <List className='products-area__list'>
+        {productItems}
+      </List>
     </ProductsArea>
   )
 }
@@ -45,7 +42,7 @@ const ProductsContainer = ({ products = Immutable.Map(), addToCart, autofillCart
 export default compose(
   connect(
     productsContainerSelector,
-    { addToCart, autofillCart }
+    { addToCart }
   ),
   pure
 )(ProductsContainer)

@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const ProductItem = ({ product, children }) => {
+const CartProduct = ({ product }) => {
   const name = product.get('name')
-  const price = product.get('price')
   const snippet = product.get('snippet')
+  const price = product.get('price')
 
   return (
     <div className='product'>
@@ -20,18 +20,17 @@ const ProductItem = ({ product, children }) => {
         <span className='product__price'>
           {`$ ${price}`}
         </span>
-        {children}
       </div>
     </div>
   )
 }
 
-ProductItem.propTypes = {
+CartProduct.propTypes = {
   product: PropTypes.shape({
     name: PropTypes.string,
+    snippet: PropTypes.string,
     price: PropTypes.number
-  }),
-  children: PropTypes.node
+  })
 }
 
-export default ProductItem
+export default CartProduct
