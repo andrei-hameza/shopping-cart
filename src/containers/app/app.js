@@ -7,7 +7,7 @@ import AppMain from '../../components/appMain'
 class App extends Component {
   render () {
     return (
-      <div className='shoping-cart-application'>
+      <div className='shoping-cart-application l-wrap'>
         <AppHeader />
         <AppMain>
           <ProductsContainer />

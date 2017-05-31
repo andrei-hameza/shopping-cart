@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const AppMain = ({children}) => (
-  <main className='app-content l-wrap l-app'>
+  <main className='app-content l-app'>
     {children}
   </main>
 )

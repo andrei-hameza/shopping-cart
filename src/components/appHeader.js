@@ -1,8 +1,8 @@
 import React from 'react'
 
 const AppHeader = () => (
-  <header className='app-header'>
-    <div className='l-wrap app-header__inner'>
+  <header className='app-header l-app'>
+    <div className='app-header__inner'>
       <div className='app-header__logo'>
         <i className='fa fa-shopping-cart' />
       </div>
