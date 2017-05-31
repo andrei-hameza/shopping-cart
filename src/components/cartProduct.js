@@ -12,7 +12,7 @@ const CartProduct = ({ product }) => {
         {name}
       </h4>
       <div className='cart-product__amount'>
-        {amount}
+        {`+ ${amount} -`}
       </div>
       <div className='cart-product__price'>
         {`$ ${price}`}
