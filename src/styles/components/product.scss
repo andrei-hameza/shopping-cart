@@ -1,13 +1,39 @@
+@import '../variables.scss';
+
 .product {
   display: flex;
   justify-content: space-between;
+  min-height: 155px;
+  padding: 40px 50px;
+  background-color: #FFF;
 
   &__left {
-    width: calc(100% - 150px);
+    width: calc(100% - 75px);
     padding-right: 50px;
   }
 
   &__right {
-    width: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 75px;
+  }
+
+  &__name {
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  &__info {
+    font-size: 14px;
+    color: $secondary-font-color;
+    padding: 10px 0;
+  }
+
+  &__price {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1;
+    text-align: right;
   }
 }
