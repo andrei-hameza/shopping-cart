@@ -60,13 +60,13 @@ const CartContainer = ({
       <button onClick={clearCart}>
         Clear
       </button>
-      <span>
-        Total: {productsTotalCost}
-      </span>
       {sortingItems}
       <ul className='products-list'>
         {productItems}
       </ul>
+      <span>
+        Total: {productsTotalCost}
+      </span>
       <button onClick={purchaseProducts}>
         Purchase
       </button>
