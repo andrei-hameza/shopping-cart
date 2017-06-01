@@ -62,6 +62,17 @@ const CartContainer = ({
       onSortChange={changeSort.bind(null, id)} />
   ))
 
+  const purchaseButton = R.ifElse(
+    R.equals(0),
+    R.always(null),
+    R.always(
+      <button
+        className='cart-area__purchase-button'
+        onClick={purchaseProducts}>
+        Purchase
+    </button>)
+  )(products.size)
+
   return (
     <CartArea>
       <CartAreaHeader className='cart-area__header'>
@@ -86,11 +97,7 @@ const CartContainer = ({
       </List>
       <CartAreaFooter>
         <TotalPrice price={productsTotalCost} />
-        <button
-          className='cart-area__purchase-button'
-          onClick={purchaseProducts}>
-          Purchase
-        </button>
+        {purchaseButton}
         <span>
           {status}
         </span>
