@@ -1,0 +1,35 @@
+.cart-header {
+  height: 125px;
+  border-radius: 3px;
+  position: relative;
+  background-color: $primary-color;
+
+  &__icon {
+    font-size: 80px;
+    color: #FFF;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+  }
+
+  &__autofill-button {
+    font-size: 16px;
+    font-weight: 600;
+    color: #FFF;
+    padding: 10px 15px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+
+  &__clear-button {
+    font-size: 16px;
+    font-weight: 600;
+    color: #FFF;
+    padding: 10px 15px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+}

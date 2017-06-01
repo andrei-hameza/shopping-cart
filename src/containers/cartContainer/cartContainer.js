@@ -6,6 +6,7 @@ import R from 'ramda'
 
 // components
 import CartArea from '../../components/cartArea'
+import CartAreaHeader from '../../components/cartAreaHeader'
 import CartAreaFooter from '../../components/cartAreaFooter'
 import List from '../../components/list'
 import ListItem from '../../components/listItem'
@@ -63,14 +64,18 @@ const CartContainer = ({
 
   return (
     <CartArea>
-      <button
-        className='cart-area__button'
-        onClick={autofillCart}>
-        Random
-      </button>
-      <button onClick={clearCart}>
-        Clear
-      </button>
+      <CartAreaHeader className='cart-area__header'>
+        <button
+          className='cart-header__autofill-button'
+          onClick={autofillCart}>
+          Autofill
+        </button>
+        <button
+          className='cart-header__clear-button'
+          onClick={clearCart}>
+          Clear
+        </button>
+      </CartAreaHeader>
       <List className='cart-area__list'>
         <ListItem>
           <Sorting>
