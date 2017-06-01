@@ -1,0 +1,12 @@
+.total-price {
+  display: flex;
+
+  &__label {
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  &__value {
+    margin-left: auto;
+  }
+}
