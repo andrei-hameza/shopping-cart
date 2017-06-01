@@ -8,7 +8,6 @@ import thunk from 'redux-thunk'
 import appReducer from './containers/app/reducer'
 import App from './containers/app'
 import registerServiceWorker from './utils/registerServiceWorker'
-import shoppingCartService from './services/shoppingCartService'
 import './styles/index.css'
 
 const middleware = [ thunk ]
@@ -49,14 +48,6 @@ store.subscribe(() => {
       }
     })
   )
-})
-
-// TODO: move to routing onEnter
-shoppingCartService.getData().then((data) => {
-  store.dispatch({
-    type: 'RECEIVE_DATA',
-    payload: data
-  })
 })
 
 ReactDOM.render(
