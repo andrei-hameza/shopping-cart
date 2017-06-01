@@ -2,7 +2,7 @@
 
 .sorting {
   display: flex;
-  padding: 5px 10px;
+  padding: 5px 15px;
 
   &-item {
     cursor: pointer;
@@ -27,7 +27,6 @@
   &-item__title {
     color: $secondary-font-color;
     font-size: 14px;
-    padding: 0 5px;
     text-transform: capitalize;
     position: relative;
   }

@@ -8,7 +8,7 @@
 
 .cart-product {
   display: flex;
-  padding: 10px;
+  padding: 10px 15px;
   background-color: #FFF;
   border-right: 1px solid #E2EAF0;
   border-left: 1px solid #E2EAF0;
@@ -18,7 +18,7 @@
     @extend %ellipsis;
     font-size: 14px;
     font-weight: 600;
-    padding: 5px;
+    padding: 5px 5px 5px 0;
     width: $cart-product-name-width;
   }
 

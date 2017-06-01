@@ -1,7 +1,18 @@
+@import '../variables.scss';
+
 .cart-area {
 
   &__footer {
     padding: 15px;
     border: 1px solid #E2EAF0;
+  }
+
+  &__purchase-button {
+    font-size: 16px;
+    line-height: 48px;
+    color: #FFF;
+    background-color: $primary-color;
+    margin-top: 30px;
+    width: 100%;
   }
 }

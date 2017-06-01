@@ -10,6 +10,7 @@ import CartAreaFooter from '../../components/cartAreaFooter'
 import List from '../../components/list'
 import ListItem from '../../components/listItem'
 import CartProduct from '../../components/cartProduct'
+import TotalPrice from '../../components/totalPrice'
 import Sorting from '../../components/sorting'
 import SortingItem from '../../components/sortingItem'
 
@@ -79,10 +80,10 @@ const CartContainer = ({
         {productItems}
       </List>
       <CartAreaFooter>
-        <span>
-          Total: {productsTotalCost}
-        </span>
-        <button onClick={purchaseProducts}>
+        <TotalPrice price={productsTotalCost} />
+        <button
+          className='cart-area__purchase-button'
+          onClick={purchaseProducts}>
           Purchase
         </button>
         <span>
