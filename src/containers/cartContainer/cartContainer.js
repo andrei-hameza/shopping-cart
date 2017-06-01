@@ -3,6 +3,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Immutable from 'immutable'
 import R from 'ramda'
+import { compose, pure } from 'recompose'
 
 // components
 import CartArea from '../../components/cartArea'
@@ -43,7 +44,6 @@ const CartContainer = ({
   purchaseProducts,
   autofillCart
 }) => {
-
   // render product items in cart
   const productItems = products.map((product) => (
     <ListItem key={product.get('id')}>
@@ -120,14 +120,17 @@ const CartContainer = ({
   )
 }
 
-export default connect(
-  cartContainerSelector,
-  {
-    addToCart,
-    removeFromCart,
-    changeSort,
-    clearCart,
-    purchaseProducts,
-    autofillCart
-  }
+export default compose(
+  connect(
+    cartContainerSelector,
+    {
+      addToCart,
+      removeFromCart,
+      changeSort,
+      clearCart,
+      purchaseProducts,
+      autofillCart
+    }
+  ),
+  pure
 )(CartContainer)
