@@ -1,6 +1,7 @@
 import shoppingCartService from '../../services/shoppingCartService'
 import generateRandomSampleFromCollection from '../../utils/generateRandomSampleFromCollection'
 
+// TODO: constants for action types
 export const removeFromCart = productId => (
   {
     type: 'REMOVE_FROM_CART',
@@ -22,6 +23,7 @@ export const addToCart = productId => (
   }
 )
 
+// TODO: constant for products amoint in autofill
 export const autofillCart = () => (dispatch, getState) => {
   const state = getState()
   const products = state.getIn(['products', 'data'])
