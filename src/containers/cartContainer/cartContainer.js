@@ -43,6 +43,8 @@ const CartContainer = ({
   purchaseProducts,
   autofillCart
 }) => {
+
+  // render product items in cart
   const productItems = products.map((product) => (
     <ListItem key={product.get('id')}>
       <CartProduct
@@ -52,6 +54,7 @@ const CartContainer = ({
     </ListItem>
   ))
 
+  // render sorting items in cart
   const sortingItems = R.values(SortingConstants.Types).map((id) => (
     <SortingItem
       key={id}
@@ -62,6 +65,23 @@ const CartContainer = ({
       onSortChange={changeSort.bind(null, id)} />
   ))
 
+  // render products list in cart
+  const productsList = R.ifElse(
+    R.equals(0),
+    R.always(null),
+    R.always(
+      <List className='cart-area__list'>
+        <ListItem>
+          <Sorting>
+            {sortingItems}
+          </Sorting>
+        </ListItem>
+        {productItems}
+      </List>
+    )
+  )(products.size)
+
+  // render purchase button in cart
   const purchaseButton = R.ifElse(
     R.equals(0),
     R.always(null),
@@ -70,7 +90,8 @@ const CartContainer = ({
         className='cart-area__purchase-button'
         onClick={purchaseProducts}>
         Purchase
-    </button>)
+      </button>
+    )
   )(products.size)
 
   return (
@@ -87,14 +108,7 @@ const CartContainer = ({
           Clear
         </button>
       </CartAreaHeader>
-      <List className='cart-area__list'>
-        <ListItem>
-          <Sorting>
-            {sortingItems}
-          </Sorting>
-        </ListItem>
-        {productItems}
-      </List>
+      {productsList}
       <CartAreaFooter>
         <TotalPrice price={productsTotalCost} />
         {purchaseButton}
