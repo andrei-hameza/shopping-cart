@@ -1,6 +1,5 @@
 // libs
 import { createStore, applyMiddleware, compose } from 'redux'
-import Immutable from 'immutable'
 import localStorageEnhancer from './localStorageEnhancer'
 
 // middlewares
@@ -16,17 +15,26 @@ if (process.env.NODE_ENV !== 'production') {
   middleware.push(createLogger())
 }
 
+// enable redux dev tools
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
+// store enhancers
 const enhancer = composeEnhancers(
   applyMiddleware(...middleware),
   localStorageEnhancer({})
 )
 
-const configureStore = () => {
+/**
+ * Creates redux store for holding application state
+ *
+ * @param {Object} [preloadedState]
+ * @return {Object} store
+ */
+
+const configureStore = (preloadedState = {}) => {
   const store = createStore(
     rootReducer,
-    Immutable.Map(),
+    preloadedState,
     enhancer
   )
   return store
