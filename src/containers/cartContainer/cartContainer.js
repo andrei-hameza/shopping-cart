@@ -44,6 +44,8 @@ const CartContainer = ({
   purchaseProducts,
   autofillCart
 }) => {
+
+  console.log(products)
   // render product items in cart
   const productItems = products.map((product) => (
     <ListItem key={product.get('id')}>

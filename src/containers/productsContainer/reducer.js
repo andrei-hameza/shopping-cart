@@ -27,7 +27,7 @@ const initialState = Immutable.fromJS({
  * @return {Immutable.Map} new state
  */
 
-export const products = (state = initialState, action) => {
+const products = (state = initialState, action) => {
   switch (action.type) {
     case 'RECEIVE_DATA':
       return _receiveData(state, action)
@@ -35,3 +35,5 @@ export const products = (state = initialState, action) => {
       return state
   }
 }
+
+export default products

@@ -2,7 +2,7 @@ import { createLogger } from 'redux-logger'
 import thunk from 'redux-thunk'
 import Immutable from 'immutable'
 import { createStore, applyMiddleware, compose } from 'redux'
-import appReducer from '../containers/app/reducer'
+import rootReducer from './rootReducer'
 
 const middleware = [ thunk ]
 
@@ -19,15 +19,19 @@ let persistedState
 
 // TODO: move to separate enhancer and check private mode
 try {
-  persistedState = window.localStorage.getItem('shoppingCartApp')
-    ? JSON.parse(window.localStorage.getItem('shoppingCartApp')) || {}
-    : {}
+  const serializedState = window.localStorage.getItem('shoppingCartApp')
+
+  if (serializedState === null) {
+    persistedState = undefined
+  } else {
+    persistedState = JSON.parse(window.localStorage.getItem('shoppingCartApp'))
+  }
 } catch (e) {
-  persistedState = {}
+  persistedState = undefined
 }
 
 const store = createStore(
-  appReducer,
+  rootReducer,
   Immutable.fromJS(persistedState),
   enhancer
 )
