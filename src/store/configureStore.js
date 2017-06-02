@@ -15,37 +15,41 @@ const enhancer = composeEnhancers(
   applyMiddleware(...middleware)
 )
 
-let persistedState
+const configureStore = () => {
+  let persistedState
 
-// TODO: move to separate enhancer and check private mode
-try {
-  const serializedState = window.localStorage.getItem('shoppingCartApp')
+  // TODO: move to separate enhancer and check private mode
+  try {
+    const serializedState = window.localStorage.getItem('shoppingCartApp')
 
-  if (serializedState === null) {
+    if (serializedState === null) {
+      persistedState = undefined
+    } else {
+      persistedState = JSON.parse(window.localStorage.getItem('shoppingCartApp'))
+    }
+  } catch (e) {
     persistedState = undefined
-  } else {
-    persistedState = JSON.parse(window.localStorage.getItem('shoppingCartApp'))
   }
-} catch (e) {
-  persistedState = undefined
+
+  const store = createStore(
+    rootReducer,
+    Immutable.fromJS(persistedState),
+    enhancer
+  )
+
+  store.subscribe(() => {
+    window
+      .localStorage
+      .setItem('shoppingCartApp', JSON.stringify({
+        cart: {
+          data: store.getState().getIn(['cart', 'data']).toJS(),
+          sorting: {},
+          status: ''
+        }
+      }))
+  })
+
+  return store
 }
 
-const store = createStore(
-  rootReducer,
-  Immutable.fromJS(persistedState),
-  enhancer
-)
-
-store.subscribe(() => {
-  window.localStorage
-    .setItem('shoppingCartApp', JSON.stringify({
-      cart: {
-        data: store.getState().getIn(['cart', 'data']).toJS(),
-        sorting: {},
-        status: ''
-      }
-    })
-  )
-})
-
-export default store
+export default configureStore

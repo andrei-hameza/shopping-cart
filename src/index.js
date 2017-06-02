@@ -8,10 +8,12 @@ import App from './containers/app'
 
 // helpers
 import registerServiceWorker from './utils/registerServiceWorker'
-import store from './store/configureStore'
+import configureStore from './store/configureStore'
 
 // styles
 import './styles/index.css'
+
+const store = configureStore()
 
 ReactDOM.render(
   <Provider store={store}>
