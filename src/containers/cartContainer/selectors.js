@@ -5,7 +5,7 @@ import { sortBy } from '../../utils/sortingHelpers'
 import R from 'ramda'
 
 /**
- * Give the current products' ids in the cart and their amount
+ * Gives the current products' ids in the cart and their amount
  *
  * @param {Immutable.Map} [state]
  * @return {Immutable.OrderedMap}
@@ -16,7 +16,7 @@ export function cartProductsIds (state) {
 }
 
 /**
- * Give the current sorting in the cart
+ * Gives the current sorting in the cart
  *
  * @param {Immutable.Map} [state]
  * @return {Immutable.Map} Empty object when there is no sort { } or { id: String, direction: String }
@@ -27,7 +27,7 @@ export function currentSorting (state) {
 }
 
 /**
- * Give the current purchase status of the cart
+ * Gives the current purchase status of the cart
  *
  * @param {Immutable.Map} [state]
  * @return {String}
@@ -38,7 +38,7 @@ export function cartPurchaseStatus (state) {
 }
 
 /**
- * Give the list of products in the cart together with their amount
+ * Gives the list of products in the cart together with their amount
  *
  * @param {Immutable.Map} [state]
  * @return {Immutable.List}
@@ -61,36 +61,52 @@ export const productsInCart = createSelector(
 
 /**
  * Selector creator with custom memoize function which
- * is used for smart saving the previous order in case of sorting change
+ * is used for smart saving the previous order in case of sorting or products change
  *
  * @param {Function}
  * @return {Function}
  */
 
 const createCustomSelector = createSelectorCreator((selector) => {
-  let prevCurrentSorting
-  let prevProductsInCart
-  let prevResult
+  let prevCurrentSorting = Immutable.Map()
+  let prevProductsInCart = Immutable.List()
+  let prevResult = Immutable.List()
 
   return (productsInCart, currentSorting) => {
     let result
-    if (prevCurrentSorting === currentSorting && prevProductsInCart === productsInCart) {
-      return prevResult
-    }
-    if (prevCurrentSorting !== currentSorting && prevProductsInCart === productsInCart) {
+
+    if (prevProductsInCart === productsInCart) {
+      // nothing was changed, returns previous result
+      if (prevCurrentSorting === currentSorting) {
+        return prevResult
+      }
+
+      // sorting was changed, apply new sorting
       result = selector(prevResult, currentSorting)
-    } else {
-      result = selector(productsInCart, currentSorting)
+    } else { // products in cart were changed
+      if (productsInCart.size < prevProductsInCart.size) { // product was removed
+        result = prevResult.filter(item => productsInCart.find(product => item.get('id') === product.get('id')))
+      } else if (productsInCart.size > prevProductsInCart.size) { // product was added
+        const newProducts = productsInCart.filter(product => !prevResult.find(item => item.get('id') === product.get('id')))
+        const products = prevResult.concat(newProducts)
+        result = selector(products, currentSorting)
+      } else { // some product was updated
+        const products = prevResult.map(product => productsInCart.find(item => item.get('id') === product.get('id')))
+        result = selector(products, currentSorting)
+      }
     }
+
+    // data saving
     prevResult = result
     prevCurrentSorting = currentSorting
     prevProductsInCart = productsInCart
+
     return result
   }
 })
 
 /**
- * Give the sorted list of products in the cart
+ * Gives the sorted list of products in the cart
  *
  * @param {Immutable.Map} [state]
  * @return {Immutable.List}
@@ -114,7 +130,7 @@ export const sortedProductsInCart = createCustomSelector(
 )
 
 /**
- * Give the total cost of products in the cart
+ * Gives the total cost of products in the cart
  *
  * @param {Immutable.Map} [state]
  * @return {Number}
