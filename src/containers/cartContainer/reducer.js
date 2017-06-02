@@ -59,7 +59,7 @@ const cart = (state = initialState, action) => {
     case 'ADD_TO_CART':
       return _addToCart(state, action)
     case 'BATCH_ADD_TO_CART':
-      return _batchAddToCart(state, action)
+      return _batchAddToCart(initialState, action)
     case 'REMOVE_FROM_CART':
       return _removeFromCart(state, action)
     case 'CHANGE_SORTING':
