@@ -30,10 +30,9 @@ const enhancer = composeEnhancers(
 )
 
 /**
- * @description
  * Creates redux store for holding application state
  *
- * @param {Object} [preloadedState] The initial state
+ * @param {Object} [preloadedState=Immutable.Map] The initial state
  * @return {Object} Redux store
  */
 
