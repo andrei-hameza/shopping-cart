@@ -7,8 +7,8 @@ import R from 'ramda'
 /**
  * Gives the current products' ids in the cart and their amount
  *
- * @param {Immutable.Map} [state]
- * @return {Immutable.OrderedMap}
+ * @param {Immutable.Map} state
+ * @return {Immutable.OrderedMap} - Products' ids OrderedMap
  */
 
 export function cartProductsIds (state) {
@@ -18,8 +18,9 @@ export function cartProductsIds (state) {
 /**
  * Gives the current sorting in the cart
  *
- * @param {Immutable.Map} [state]
- * @return {Immutable.Map} Empty object when there is no sort { } or { id: String, direction: String }
+ * @param {Immutable.Map} state
+ * @return {Immutable.Map} - Current sorting
+ * Empty object when there is no sort { } or { id: String, direction: String }
  */
 
 export function currentSorting (state) {
@@ -29,8 +30,8 @@ export function currentSorting (state) {
 /**
  * Gives the current purchase status of the cart
  *
- * @param {Immutable.Map} [state]
- * @return {String}
+ * @param {Immutable.Map} state
+ * @return {String} - Current purchase status
  */
 
 export function cartPurchaseStatus (state) {
@@ -40,8 +41,8 @@ export function cartPurchaseStatus (state) {
 /**
  * Gives the list of products in the cart together with their amount
  *
- * @param {Immutable.Map} [state]
- * @return {Immutable.List}
+ * @param {Immutable.Map} state
+ * @return {Immutable.List} - Products list
  */
 
 export const productsInCart = createSelector(
@@ -110,8 +111,8 @@ const createCustomSelector = createSelectorCreator((selector) => {
 /**
  * Gives the sorted list of products in the cart
  *
- * @param {Immutable.Map} [state]
- * @return {Immutable.List}
+ * @param {Immutable.Map} state
+ * @return {Immutable.List} - Sorted products list
  */
 
 export const sortedProductsInCart = createCustomSelector(
@@ -135,8 +136,8 @@ export const sortedProductsInCart = createCustomSelector(
 /**
  * Gives the total cost of products in the cart
  *
- * @param {Immutable.Map} [state]
- * @return {Number}
+ * @param {Immutable.Map} state
+ * @return {Number} - Total cost of products
  */
 
 export const productsTotalCost = createSelector(
@@ -149,10 +150,10 @@ export const productsTotalCost = createSelector(
 )
 
 /**
- * Structured selector that returns data for cartContainer compopnent | mapStateToProps
+ * Structured selector that returns data for cartContainer component | mapStateToProps
  *
- * @param {Immutable.Map} [state]
- * @return {Object}
+ * @param {Immutable.Map} state
+ * @return {Object} - Data for cartContainer component
  */
 
 export const cartContainerSelector = createStructuredSelector({
