@@ -71,6 +71,7 @@ const cart = (state = initialState, action) => {
     case 'PURCHASE_FAILED':
       return state.set('status', 'Purchase failed')
     case 'CLEAR_PURCHASE_STATUS':
+      return state.set('status', '')
     case 'CLEAR_CART':
       return initialState
     default:

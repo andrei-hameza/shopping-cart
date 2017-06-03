@@ -1,4 +1,5 @@
 import data from '../data/products.json'
+import { shoppingCartServiceConfig } from '../constants/config'
 
 const shoppingCartService = {
 
@@ -22,7 +23,8 @@ const shoppingCartService = {
 
   sendData: (products) => {
     return new Promise((resolve, reject) => {
-      setTimeout(resolve, 1000)
+      const method = shoppingCartServiceConfig.SUCCESS ? resolve : reject
+      setTimeout(method, shoppingCartServiceConfig.TIMEOUT)
     })
   }
 }

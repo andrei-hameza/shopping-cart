@@ -41,7 +41,10 @@ export const purchaseProducts = () => (dispatch, getState) => {
   shoppingCartService.sendData(products).then(() => {
     dispatch({ type: 'PURCHASE_SUCCESS' })
     setTimeout(dispatch, 1000, { type: 'CLEAR_PURCHASE_STATUS' })
-  }).catch(() => dispatch({ type: 'PURCHASE_FAILED' }))
+  }).catch(() => {
+    dispatch({ type: 'PURCHASE_FAILED' })
+    setTimeout(dispatch, 1000, { type: 'CLEAR_PURCHASE_STATUS' })
+  })
 }
 
 export const changeSort = sortId => (
