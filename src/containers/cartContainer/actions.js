@@ -1,24 +1,25 @@
+import { cartActionTypes } from '../../constants/actionTypes'
 import shoppingCartService from '../../services/shoppingCartService'
 import generateRandomSampleFromCollection from '../../utils/generateRandomSampleFromCollection'
 
 // TODO: constants for action types
 export const removeFromCart = productId => (
   {
-    type: 'REMOVE_FROM_CART',
+    type: cartActionTypes.REMOVE_FROM_CART,
     payload: productId
   }
 )
 
 export const clearCart = () => (
   {
-    type: 'CLEAR_CART',
+    type: cartActionTypes.CLEAR_CART,
     payload: null
   }
 )
 
 export const addToCart = productId => (
   {
-    type: 'ADD_TO_CART',
+    type: cartActionTypes.ADD_TO_CART,
     payload: productId
   }
 )
@@ -29,7 +30,7 @@ export const autofillCart = () => (dispatch, getState) => {
   const products = state.getIn(['products', 'data'])
   const randomProducts = generateRandomSampleFromCollection(products.toList().toJS(), 40).map(product => product.id)
   dispatch({
-    type: 'BATCH_ADD_TO_CART',
+    type: cartActionTypes.BATCH_ADD_TO_CART,
     payload: randomProducts
   })
 }
@@ -37,19 +38,19 @@ export const autofillCart = () => (dispatch, getState) => {
 export const purchaseProducts = () => (dispatch, getState) => {
   const state = getState()
   const products = state.getIn(['products', 'data']).toJS()
-  dispatch({ type: 'PURCHASE_IN_PROGRESS' })
+  dispatch({ type: cartActionTypes.PURCHASE_IN_PROGRESS })
   shoppingCartService.sendData(products).then(() => {
-    dispatch({ type: 'PURCHASE_SUCCESS' })
-    setTimeout(dispatch, 1000, { type: 'CLEAR_PURCHASE_STATUS' })
+    dispatch({ type: cartActionTypes.PURCHASE_SUCCESS })
+    setTimeout(dispatch, 1000, { type: cartActionTypes.CLEAR_PURCHASE_STATUS })
   }).catch(() => {
-    dispatch({ type: 'PURCHASE_FAILED' })
-    setTimeout(dispatch, 1000, { type: 'CLEAR_PURCHASE_STATUS' })
+    dispatch({ type: cartActionTypes.PURCHASE_FAILED })
+    setTimeout(dispatch, 1000, { type: cartActionTypes.CLEAR_PURCHASE_STATUS })
   })
 }
 
 export const changeSort = sortId => (
   {
-    type: 'CHANGE_SORTING',
+    type: cartActionTypes.CHANGE_SORTING,
     payload: sortId
   }
 )

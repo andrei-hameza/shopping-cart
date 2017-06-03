@@ -1,6 +1,7 @@
 import Immutable from 'immutable'
 import R from 'ramda'
 import { SortingConstants } from '../../constants/sortingConstants'
+import { cartActionTypes } from '../../constants/actionTypes'
 
 function _addToCart (state, action) {
   const productId = action.payload
@@ -56,23 +57,23 @@ const initialState = Immutable.fromJS({
 
 const cart = (state = initialState, action) => {
   switch (action.type) {
-    case 'ADD_TO_CART':
+    case cartActionTypes.ADD_TO_CART:
       return _addToCart(state, action)
-    case 'BATCH_ADD_TO_CART':
+    case cartActionTypes.BATCH_ADD_TO_CART:
       return _batchAddToCart(initialState, action)
-    case 'REMOVE_FROM_CART':
+    case cartActionTypes.REMOVE_FROM_CART:
       return _removeFromCart(state, action)
-    case 'CHANGE_SORTING':
+    case cartActionTypes.CHANGE_SORTING:
       return _changeSorting(state, action)
-    case 'PURCHASE_IN_PROGRESS':
+    case cartActionTypes.PURCHASE_IN_PROGRESS:
       return state.set('status', 'Processing...')
-    case 'PURCHASE_SUCCESS':
+    case cartActionTypes.PURCHASE_SUCCESS:
       return initialState.set('status', 'Purchase completed')
-    case 'PURCHASE_FAILED':
+    case cartActionTypes.PURCHASE_FAILED:
       return state.set('status', 'Purchase failed')
-    case 'CLEAR_PURCHASE_STATUS':
+    case cartActionTypes.CLEAR_PURCHASE_STATUS:
       return state.set('status', '')
-    case 'CLEAR_CART':
+    case cartActionTypes.CLEAR_CART:
       return initialState
     default:
       return state
