@@ -30,10 +30,11 @@ const enhancer = composeEnhancers(
 )
 
 /**
+ * @description
  * Creates redux store for holding application state
  *
- * @param {Object} [preloadedState]
- * @return {Object} store
+ * @param {Object} [preloadedState] The initial state
+ * @return {Object} Redux store
  */
 
 const configureStore = (preloadedState = Immutable.Map()) => {
@@ -43,13 +44,17 @@ const configureStore = (preloadedState = Immutable.Map()) => {
     enhancer
   )
 
+  /**
+   * Redux-persist-immutable is used as a persistence layer
+   */
+
   persistStore(store, {
-    whitelist: ['cart'],
-    debounce: 1000,
+    whitelist: ['cart'], // save only cart state
+    debounce: 1000, // debounce 1000 ms for better performance
     transforms: [
-      saveSubsetFilter(['data'])
+      saveSubsetFilter(['data']) // save only data from cart
     ],
-    storage: localForage
+    storage: localForage // use localForage as a storage
   })
 
   return store
