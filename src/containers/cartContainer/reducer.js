@@ -1,8 +1,19 @@
+// libs
 import Immutable from 'immutable'
 import R from 'ramda'
+
+// constants
 import { SortingConstants } from '../../constants/sortingConstants'
 import { PurchaseStatusConstants } from '../../constants/purchaseStatusConstants'
 import { cartActionTypes } from '../../constants/actionTypes'
+
+/**
+ * Adds product to the cart
+ *
+ * @param {Immutable.Map} state - Old state
+ * @param {Object} action
+ * @return {Immutable.Map} - New state
+ */
 
 function _addToCart (state, action) {
   const productId = action.payload
@@ -11,6 +22,14 @@ function _addToCart (state, action) {
     ? state.setIn(['data', productId], 1)
     : state.updateIn(['data', productId], value => ++value)
 }
+
+/**
+ * Adds batch of products to the cart
+ *
+ * @param {Immutable.Map} state - Old state
+ * @param {Object} action
+ * @return {Immutable.Map} - New state
+ */
 
 function _batchAddToCart (state, action) {
   const productIds = action.payload
@@ -21,6 +40,14 @@ function _batchAddToCart (state, action) {
   return state.setIn(['data'], Immutable.fromJS(cartProducts))
 }
 
+/**
+ * Removes product from the cart
+ *
+ * @param {Immutable.Map} state - Old state
+ * @param {Object} action
+ * @return {Immutable.Map} - New state
+ */
+
 function _removeFromCart (state, action) {
   const productId = action.payload
   const amount = state.getIn(['data', productId])
@@ -28,6 +55,14 @@ function _removeFromCart (state, action) {
     ? state.deleteIn(['data', productId])
     : state.updateIn(['data', productId], value => --value)
 }
+
+/**
+ * Changes sorting in the cart
+ *
+ * @param {Immutable.Map} state - Old state
+ * @param {Object} action
+ * @return {Immutable.Map} - New state
+ */
 
 function _changeSorting (state, action) {
   const sortId = action.payload
@@ -50,11 +85,20 @@ function _changeSorting (state, action) {
   }))
 }
 
+// initial state
 const initialState = Immutable.fromJS({
   data: Immutable.OrderedMap({}),
   sorting: {},
   status: ''
 })
+
+/**
+ * Cart reducer
+ *
+ * @param {Immutable.Map} state - Old state
+ * @param {Object} action
+ * @return {Immutable.Map} - New state
+ */
 
 const cart = (state = initialState, action) => {
   switch (action.type) {
