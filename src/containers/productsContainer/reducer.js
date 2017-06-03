@@ -1,6 +1,10 @@
+// libs
 import Immutable from 'immutable'
 import R from 'ramda'
 
+// constants
+
+import { productsActionTypes } from '../../constants/actionTypes'
 /**
  * Adds received data to the store
  *
@@ -29,7 +33,7 @@ const initialState = Immutable.fromJS({
 
 const products = (state = initialState, action) => {
   switch (action.type) {
-    case 'RECEIVE_DATA':
+    case productsActionTypes.SET_DATA:
       return _receiveData(state, action)
     default:
       return state

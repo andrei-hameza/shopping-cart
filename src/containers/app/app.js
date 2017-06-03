@@ -9,7 +9,7 @@ import AppHeader from '../../components/appHeader'
 import AppMain from '../../components/appMain'
 
 // actions
-import { receiveData } from './actions'
+import { receiveData } from '../productsContainer/actions'
 
 // services
 import shoppingCartService from '../../services/shoppingCartService'

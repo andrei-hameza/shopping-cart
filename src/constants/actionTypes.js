@@ -11,3 +11,7 @@ export const cartActionTypes = nsKeyMirror({
   PURCHASE_FAILED: null,
   CLEAR_PURCHASE_STATUS: null
 }, 'CART')
+
+export const productsActionTypes = nsKeyMirror({
+  SET_DATA: null
+}, 'PRODUCTS')
