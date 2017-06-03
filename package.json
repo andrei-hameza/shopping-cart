@@ -6,6 +6,7 @@
     "classnames": "^2.2.5",
     "font-awesome": "^4.7.0",
     "immutable": "^3.8.1",
+    "localforage": "^1.5.0",
     "npm-font-open-sans": "^1.0.3",
     "nskeymirror": "^0.1.2",
     "ramda": "^0.23.0",
@@ -18,6 +19,7 @@
     "redux": "^3.6.0",
     "redux-immutable": "^4.0.0",
     "redux-logger": "^3.0.6",
+    "redux-persist-immutable": "^4.3.0",
     "redux-thunk": "^2.2.0",
     "reselect": "^3.0.1",
     "standard": "^10.0.2"
