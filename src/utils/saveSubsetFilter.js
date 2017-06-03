@@ -1,5 +1,12 @@
 import { createTransform } from 'redux-persist-immutable'
 
+/**
+ * Removes keys from the state before saving it to storage
+ *
+ * @param {String[]} keys - Keys that should be removed from state before saving
+ * @return {Object} - Returns object with transformation functions
+ */
+
 const saveSubsetFilter = keys => createTransform(
   // transform state coming from redux on its way to being serialized and stored
   (inboundState, key) => {
