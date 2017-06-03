@@ -55,7 +55,6 @@ export const productsInCart = createSelector(
       return R.isNil(product) ? acc : [...acc, product.set('amount', count)]
     }, [])
 
-    console.log(result)
     return Immutable.fromJS(result)
   }
 )
@@ -75,8 +74,6 @@ const createCustomSelector = createSelectorCreator((selector) => {
 
   return (productsInCart, currentSorting) => {
     let result
-
-    console.log('productsInCart', productsInCart)
 
     if (currentSorting.size === 0) {
       result = selector(productsInCart, currentSorting)
@@ -105,8 +102,6 @@ const createCustomSelector = createSelectorCreator((selector) => {
     prevResult = result
     prevCurrentSorting = currentSorting
     prevProductsInCart = productsInCart
-
-    console.log('result', result)
 
     return result
   }
