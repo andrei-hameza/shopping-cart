@@ -1,6 +1,7 @@
 import Immutable from 'immutable'
 import R from 'ramda'
 import { SortingConstants } from '../../constants/sortingConstants'
+import { PurchaseStatusConstants } from '../../constants/purchaseStatusConstants'
 import { cartActionTypes } from '../../constants/actionTypes'
 
 function _addToCart (state, action) {
@@ -66,11 +67,11 @@ const cart = (state = initialState, action) => {
     case cartActionTypes.CHANGE_SORTING:
       return _changeSorting(state, action)
     case cartActionTypes.PURCHASE_IN_PROGRESS:
-      return state.set('status', 'Processing...')
+      return state.set('status', PurchaseStatusConstants.PURCHASE_IN_PROGRESS)
     case cartActionTypes.PURCHASE_SUCCESS:
-      return initialState.set('status', 'Purchase completed')
+      return initialState.set('status', PurchaseStatusConstants.PURCHASE_SUCCESS)
     case cartActionTypes.PURCHASE_FAILED:
-      return state.set('status', 'Purchase failed')
+      return state.set('status', PurchaseStatusConstants.PURCHASE_FAILED)
     case cartActionTypes.CLEAR_PURCHASE_STATUS:
       return state.set('status', '')
     case cartActionTypes.CLEAR_CART:
