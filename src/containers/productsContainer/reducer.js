@@ -3,14 +3,14 @@ import Immutable from 'immutable'
 import R from 'ramda'
 
 // constants
-
 import { productsActionTypes } from '../../constants/actionTypes'
+
 /**
  * Adds received data to the store
  *
- * @param {Immutable.Map} [state] old state
- * @param {Object} [action]
- * @return {Immutable.Map} new state
+ * @param {Immutable.Map} state - Old state
+ * @param {Object} action
+ * @return {Immutable.Map} - New state
  */
 
 function _receiveData (state, action) {
@@ -26,9 +26,9 @@ const initialState = Immutable.fromJS({
 /**
  * Products reducer
  *
- * @param {Immutable.Map} [state] old state
- * @param {Object} [action]
- * @return {Immutable.Map} new state
+ * @param {Immutable.Map} state - Old state
+ * @param {Object} action
+ * @return {Immutable.Map} - New state
  */
 
 const products = (state = initialState, action) => {
