@@ -1,10 +1,10 @@
 import { createStructuredSelector } from 'reselect'
 
 /**
- * Give the oredered map of all products | { id: product }
+ * Gives the oredered map of all products: { id: product }
  *
- * @param {Immutable.Map} [state]
- * @return {Immutable.OrderedMap}
+ * @param {Immutable.Map} state
+ * @return {Immutable.OrderedMap} - Products map
  */
 
 export function products (state) {
@@ -14,8 +14,8 @@ export function products (state) {
 /**
 * Structured selector that returns data for productsContainer compopnent | mapStateToProps
 *
-* @param {Immutable.Map} [state]
-* @return {Object}
+* @param {Immutable.Map} state
+* @return {Object} - Data for productsContainer compopnent
 */
 
 export const productsContainerSelector = createStructuredSelector({
