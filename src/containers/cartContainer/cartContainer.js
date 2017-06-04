@@ -44,6 +44,8 @@ const CartContainer = ({
   purchaseProducts,
   autofillCart
 }) => {
+  const isHidden = products.size === 0
+
   // render product items in cart
   const productItems = products.map((product) => {
     const id = product.get('id')
@@ -75,22 +77,6 @@ const CartContainer = ({
       onSortChange={changeSort.bind(null, id)} />
   ))
 
-  // render products list in cart
-  const productsList = R.ifElse(
-    R.equals(0),
-    R.always(null),
-    R.always(
-      <List className='cart-area__list'>
-        <ListItem>
-          <Sorting>
-            {sortingItems}
-          </Sorting>
-        </ListItem>
-        {productItems}
-      </List>
-    )
-  )(products.size)
-
   // render purchase button in cart
   const purchaseButton = R.ifElse(
     R.equals(0),
@@ -118,7 +104,16 @@ const CartContainer = ({
           Clear
         </button>
       </CartAreaHeader>
-      {productsList}
+      <List
+        isHidden={isHidden}
+        className='cart-area__list'>
+        <ListItem>
+          <Sorting>
+            {sortingItems}
+          </Sorting>
+        </ListItem>
+        {productItems}
+      </List>
       <CartAreaFooter>
         <TotalPrice price={productsTotalCost} />
         {purchaseButton}

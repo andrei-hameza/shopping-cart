@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
+import hideIfNoData from './hideIfNoData'
 
 const List = ({ children, className, ...others }) => (
   <ul className={cn('list', className)} {...others}>
@@ -12,4 +13,4 @@ List.propTypes = {
   children: PropTypes.node
 }
 
-export default List
+export default hideIfNoData(List)

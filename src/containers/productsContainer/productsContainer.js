@@ -17,6 +17,8 @@ import { addToCart } from '../cartContainer/actions'
 import { productsContainerSelector } from './selectors'
 
 const ProductsContainer = ({ products = Immutable.Map(), addToCart }) => {
+  const isHidden = products.size === 0
+
   const productItems = products.toList().map((product) => {
     const id = product.get('id')
     const name = product.get('name')
@@ -39,7 +41,9 @@ const ProductsContainer = ({ products = Immutable.Map(), addToCart }) => {
       <Heading
         title='Products'
         className='products-area__title' />
-      <List className='products-area__list'>
+      <List
+        isHidden={isHidden}
+        className='products-area__list'>
         {productItems}
       </List>
     </ProductsArea>
