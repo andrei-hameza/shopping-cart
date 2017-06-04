@@ -2,11 +2,12 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
 class Product extends PureComponent {
-  handleClick = () => {
+  handleClick = (e) => {
     const {
       id,
       onAddToCart
     } = this.props
+    e.preventDefault()
     onAddToCart(id)
   }
 
