@@ -44,16 +44,25 @@ const CartContainer = ({
   purchaseProducts,
   autofillCart
 }) => {
-
   // render product items in cart
-  const productItems = products.map((product) => (
-    <ListItem key={product.get('id')}>
-      <CartProduct
-        product={product}
-        addToCart={addToCart}
-        removeFromCart={removeFromCart} />
-    </ListItem>
-  ))
+  const productItems = products.map((product) => {
+    const id = product.get('id')
+    const name = product.get('name')
+    const amount = product.get('amount')
+    const price = product.get('price')
+
+    return (
+      <ListItem key={id}>
+        <CartProduct
+          id={id}
+          name={name}
+          amount={amount}
+          price={price}
+          onAddToCart={addToCart}
+          onRemoveFromCart={removeFromCart} />
+      </ListItem>
+    )
+  })
 
   // render sorting items in cart
   const sortingItems = R.values(SortingConstants.Types).map((id) => (
