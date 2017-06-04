@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
+import Button from './button'
+
 class CartProduct extends PureComponent {
   handleAddToCart = () => {
     const {
@@ -20,6 +22,7 @@ class CartProduct extends PureComponent {
 
   render () {
     const {
+      id,
       name,
       amount,
       price
@@ -31,17 +34,19 @@ class CartProduct extends PureComponent {
           {name}
         </h4>
         <div className='cart-product__counter'>
-          <button
+          <Button
             className='cart-product__button'
-            onClick={this.handleRemoveFromCart}>
+            onClick={this.handleRemoveFromCart}
+            onClickParam={id} >
             <i className='fa fa-minus' />
-          </button>
+          </Button>
           <div className='cart-product__amount'>{amount}</div>
-          <button
+          <Button
             className='cart-product__button'
-            onClick={this.handleAddToCart}>
+            onClick={this.handleAddToCart}
+            onClickParam={id} >
             <i className='fa fa-plus' />
-          </button>
+          </Button>
         </div>
         <div className='cart-product__price'>
           {`$ ${price}`}
