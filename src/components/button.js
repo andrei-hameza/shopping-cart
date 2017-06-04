@@ -17,15 +17,19 @@ class Button extends PureComponent {
     const {
       className,
       title,
-      children
+      icon
     } = this.props
+
+    const iconItem = icon && (
+      <i className={icon}></i>
+    )
 
     return (
       <button
         className={cn(className, 'button')}
         onClick={this.handleClick}>
         {title}
-        {children}
+        {iconItem}
       </button>
     )
   }
@@ -34,6 +38,7 @@ class Button extends PureComponent {
 Button.propTypes = {
   children: PropTypes.node,
   title: PropTypes.string,
+  icon: PropTypes.string,
   onClick: PropTypes.func,
   onClickParam: PropTypes.oneOfType([
     PropTypes.string,

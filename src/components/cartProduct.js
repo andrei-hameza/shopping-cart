@@ -13,6 +13,7 @@ class CartProduct extends PureComponent {
       onAddToCart,
       onRemoveFromCart
     } = this.props
+    console.log('RENDER CartProduct', name)
 
     return (
       <div className='cart-product'>
@@ -23,16 +24,14 @@ class CartProduct extends PureComponent {
           <Button
             className='cart-product__button'
             onClick={onRemoveFromCart}
-            onClickParam={id} >
-            <i className='fa fa-minus' />
-          </Button>
+            onClickParam={id}
+            icon='fa fa-minus' />
           <div className='cart-product__amount'>{amount}</div>
           <Button
             className='cart-product__button'
             onClick={onAddToCart}
-            onClickParam={id} >
-            <i className='fa fa-plus' />
-          </Button>
+            onClickParam={id}
+            icon='fa fa-plus' />
         </div>
         <div className='cart-product__price'>
           {`$ ${price}`}
