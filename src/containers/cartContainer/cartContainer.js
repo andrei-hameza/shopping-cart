@@ -47,7 +47,7 @@ const CartContainer = ({
   const isHidden = products.size === 0
 
   // render product items in cart
-  const productItems = products.map((product) => {
+  const productItems = !isHidden && products.map((product) => {
     const id = product.get('id')
     const name = product.get('name')
     const amount = product.get('amount')
@@ -69,7 +69,7 @@ const CartContainer = ({
   // TODO: refactoring Sorting and SortingItem
   // TODO: add status component
   // render sorting items in cart
-  const sortingItems = R.values(SortingConstants.Types).map((id) => (
+  const sortingItems = !isHidden && R.values(SortingConstants.Types).map((id) => (
     <SortingItem
       key={id}
       className={`sorting__${id}`}
