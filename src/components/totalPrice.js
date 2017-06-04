@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import { pure } from 'recompose'
+
 const TotalPrice = ({ price, ...others }) => (
   <div className='total-price' {...others}>
     <div className='total-price__label'>
@@ -16,4 +18,4 @@ TotalPrice.propTypes = {
   price: PropTypes.number
 }
 
-export default TotalPrice
+export default pure(TotalPrice)
