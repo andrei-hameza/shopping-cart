@@ -1,21 +1,16 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
-class Product extends PureComponent {
-  handleClick = (e) => {
-    const {
-      id,
-      onAddToCart
-    } = this.props
-    e.preventDefault()
-    onAddToCart(id)
-  }
+import Button from './button'
 
+class Product extends PureComponent {
   render () {
     const {
+      id,
       name,
       snippet,
-      price
+      price,
+      onAddToCart
     } = this.props
 
     return (
@@ -32,11 +27,11 @@ class Product extends PureComponent {
           <span className='product__price'>
             {`$ ${price}`}
           </span>
-          <button
+          <Button
             className='product__purchase-button'
-            onClick={this.handleClick}>
-            Add To Cart
-          </button>
+            title='Add To Cart'
+            onClick={onAddToCart}
+            onClickParam={id} />
         </div>
       </div>
     )
