@@ -16,7 +16,8 @@ class Button extends PureComponent {
   render () {
     const {
       className,
-      title
+      title,
+      children
     } = this.props
 
     return (
@@ -24,12 +25,14 @@ class Button extends PureComponent {
         className={cn(className, 'button')}
         onClick={this.handleClick}>
         {title}
+        {children}
       </button>
     )
   }
 }
 
 Button.propTypes = {
+  children: PropTypes.node,
   title: PropTypes.string,
   onClick: PropTypes.func,
   onClickParam: PropTypes.oneOfType([

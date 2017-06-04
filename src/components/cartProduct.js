@@ -1,28 +1,17 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
+import Button from './button'
+
 class CartProduct extends PureComponent {
-  handleAddToCart = () => {
-    const {
-      id,
-      onAddToCart
-    } = this.props
-    onAddToCart(id)
-  }
-
-  handleRemoveFromCart = () => {
-    const {
-      id,
-      onRemoveFromCart
-    } = this.props
-    onRemoveFromCart(id)
-  }
-
   render () {
     const {
+      id,
       name,
       amount,
-      price
+      price,
+      onAddToCart,
+      onRemoveFromCart
     } = this.props
 
     return (
@@ -31,17 +20,19 @@ class CartProduct extends PureComponent {
           {name}
         </h4>
         <div className='cart-product__counter'>
-          <button
+          <Button
             className='cart-product__button'
-            onClick={this.handleRemoveFromCart}>
+            onClick={onRemoveFromCart}
+            onClickParam={id} >
             <i className='fa fa-minus' />
-          </button>
+          </Button>
           <div className='cart-product__amount'>{amount}</div>
-          <button
+          <Button
             className='cart-product__button'
-            onClick={this.handleAddToCart}>
+            onClick={onAddToCart}
+            onClickParam={id} >
             <i className='fa fa-plus' />
-          </button>
+          </Button>
         </div>
         <div className='cart-product__price'>
           {`$ ${price}`}

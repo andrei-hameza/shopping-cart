@@ -3,18 +3,18 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Immutable from 'immutable'
 import R from 'ramda'
-import { compose, pure } from 'recompose'
 
 // components
+import Button from '../../components/button'
 import CartArea from '../../components/cartArea'
 import CartAreaHeader from '../../components/cartAreaHeader'
 import CartAreaFooter from '../../components/cartAreaFooter'
-import List from '../../components/list'
-import ListItem from '../../components/listItem'
 import CartProduct from '../../components/cartProduct'
-import TotalPrice from '../../components/totalPrice'
 import Sorting from '../../components/sorting'
 import SortingItem from '../../components/sortingItem'
+import List from '../../components/list'
+import ListItem from '../../components/listItem'
+import TotalPrice from '../../components/totalPrice'
 
 // actions
 import {
@@ -66,6 +66,8 @@ const CartContainer = ({
     )
   })
 
+  // TODO: refactoring Sorting and SortingItem
+  // TODO: add status component
   // render sorting items in cart
   const sortingItems = R.values(SortingConstants.Types).map((id) => (
     <SortingItem
@@ -77,32 +79,18 @@ const CartContainer = ({
       onSortChange={changeSort.bind(null, id)} />
   ))
 
-  // render purchase button in cart
-  const purchaseButton = R.ifElse(
-    R.equals(0),
-    R.always(null),
-    R.always(
-      <button
-        className='cart-area__purchase-button'
-        onClick={purchaseProducts}>
-        Purchase
-      </button>
-    )
-  )(products.size)
-
   return (
     <CartArea>
       <CartAreaHeader className='cart-area__header'>
-        <button
+        <Button
           className='cart-header__autofill-button'
-          onClick={autofillCart}>
-          Autofill
-        </button>
-        <button
+          title='Autofill'
+          onClick={autofillCart} />
+        <Button
           className='cart-header__clear-button'
-          onClick={clearCart}>
-          Clear
-        </button>
+          title='Clear'
+          isHidden={isHidden}
+          onClick={clearCart} />
       </CartAreaHeader>
       <List
         isHidden={isHidden}
@@ -116,7 +104,11 @@ const CartContainer = ({
       </List>
       <CartAreaFooter>
         <TotalPrice price={productsTotalCost} />
-        {purchaseButton}
+        <Button
+          className='cart-area__purchase-button'
+          title='Purchase'
+          isHidden={isHidden}
+          onClick={purchaseProducts} />
         <span>
           {status}
         </span>
@@ -125,17 +117,14 @@ const CartContainer = ({
   )
 }
 
-export default compose(
-  connect(
-    cartContainerSelector,
-    {
-      addToCart,
-      removeFromCart,
-      changeSort,
-      clearCart,
-      purchaseProducts,
-      autofillCart
-    }
-  ),
-  pure
+export default connect(
+  cartContainerSelector,
+  {
+    addToCart,
+    removeFromCart,
+    changeSort,
+    clearCart,
+    purchaseProducts,
+    autofillCart
+  }
 )(CartContainer)
