@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
+import hideIfNoData from './hideIfNoData'
 
 class Button extends PureComponent {
   handleClick = (e) => {
@@ -39,4 +40,4 @@ Button.propTypes = {
   ])
 }
 
-export default Button
+export default hideIfNoData(Button)
