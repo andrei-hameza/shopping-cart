@@ -1,7 +1,6 @@
 // libs
 import React from 'react'
 import { connect } from 'react-redux'
-import { compose, pure } from 'recompose'
 import Immutable from 'immutable'
 
 // components
@@ -20,18 +19,26 @@ import { productsContainerSelector } from './selectors'
 const ProductsContainer = ({ products = Immutable.Map(), addToCart }) => {
   const productItems = products.toList().map((product) => {
     const id = product.get('id')
+    const name = product.get('name')
+    const snippet = product.get('snippet')
+    const price = product.get('price')
     return (
       <ListItem key={id}>
         <Product
-          product={product}
-          addToCart={addToCart.bind(null, id)} />
+          id={id}
+          name={name}
+          snippet={snippet}
+          price={price}
+          onAddToCart={addToCart} />
       </ListItem>
     )
   })
 
   return (
     <ProductsArea>
-      <Heading title='Products' className='products-area__title' />
+      <Heading
+        title='Products'
+        className='products-area__title' />
       <List className='products-area__list'>
         {productItems}
       </List>
@@ -39,10 +46,7 @@ const ProductsContainer = ({ products = Immutable.Map(), addToCart }) => {
   )
 }
 
-export default compose(
-  connect(
-    productsContainerSelector,
-    { addToCart }
-  ),
-  pure
+export default connect(
+  productsContainerSelector,
+  { addToCart }
 )(ProductsContainer)
