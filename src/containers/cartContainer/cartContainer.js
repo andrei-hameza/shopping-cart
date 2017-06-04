@@ -45,6 +45,8 @@ const CartContainer = ({
   autofillCart
 }) => {
   const isHidden = products.size === 0
+  const currentSortingId = currentSorting.get('id')
+  const currentSortingDirection = currentSorting.get('direction')
 
   // render product items in cart
   const productItems = !isHidden && products.map((product) => {
@@ -66,18 +68,19 @@ const CartContainer = ({
     )
   })
 
-  // TODO: refactoring Sorting and SortingItem
   // TODO: add status component
   // render sorting items in cart
-  const sortingItems = !isHidden && R.values(SortingConstants.Types).map((id) => (
-    <SortingItem
-      key={id}
-      className={`sorting__${id}`}
-      id={id}
-      title={id}
-      sortDirection={currentSorting.get('id') === id ? currentSorting.get('direction') : null}
-      onSortChange={changeSort.bind(null, id)} />
-  ))
+  const sortingItems = !isHidden && R.values(SortingConstants.Types).map((id) => {
+    return (
+      <SortingItem
+        className={`sorting__${id}`}
+        key={id}
+        id={id}
+        title={id}
+        sortDirection={currentSortingId === id ? currentSortingDirection : null}
+        onSortChange={changeSort} />
+    )
+  })
 
   return (
     <CartArea>
