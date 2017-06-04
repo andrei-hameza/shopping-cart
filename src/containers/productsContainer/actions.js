@@ -6,7 +6,7 @@ import { productsActionTypes } from '../../constants/actionTypes'
  * @return {Function}
  */
 
-export const receiveData = data => (dispatch) => {
+export const setData = data => (dispatch) => {
   dispatch({
     type: productsActionTypes.SET_DATA,
     payload: data

@@ -9,19 +9,19 @@ import AppHeader from '../../components/appHeader'
 import AppMain from '../../components/appMain'
 
 // actions
-import { receiveData } from '../productsContainer/actions'
+import { setData } from '../productsContainer/actions'
 
 // services
 import shoppingCartService from '../../services/shoppingCartService'
 
 class App extends Component {
   componentDidMount () {
-    const { receiveData } = this.props
+    const { setData } = this.props
 
     // fetch fake data
     shoppingCartService
       .getData()
-      .then(receiveData)
+      .then(setData)
   }
 
   render () {
@@ -37,4 +37,4 @@ class App extends Component {
   }
 }
 
-export default connect(null, { receiveData })(App)
+export default connect(null, { setData })(App)

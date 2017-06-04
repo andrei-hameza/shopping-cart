@@ -13,7 +13,7 @@ import { productsActionTypes } from '../../constants/actionTypes'
  * @return {Immutable.Map} - New state
  */
 
-function _receiveData (state, action) {
+function _setData (state, action) {
   const data = action.payload
   const mappedData = data.reduce((acc, item) => R.merge(acc, R.objOf(item.id, item)), {})
   return state.set('data', Immutable.fromJS(mappedData))
@@ -34,7 +34,7 @@ const initialState = Immutable.fromJS({
 const products = (state = initialState, action) => {
   switch (action.type) {
     case productsActionTypes.SET_DATA:
-      return _receiveData(state, action)
+      return _setData(state, action)
     default:
       return state
   }
