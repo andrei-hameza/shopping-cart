@@ -1,9 +1,16 @@
+// selectors
+import {
+  cartProductsIds,
+  currentStatus
+} from './selectors'
+
 // services
 import shoppingCartService from '../../services/shoppingCartService'
 
 // constants
 import { cartActionTypes } from '../../constants/actionTypes'
 import { randomSampleSize } from '../../constants/config'
+import { PurchaseStatusConstants } from '../../constants/purchaseStatusConstants'
 
 // helpers
 import generateRandomSampleFromCollection from '../../utils/generateRandomSampleFromCollection'
@@ -89,7 +96,13 @@ export const autofillCart = () => (dispatch, getState) => {
 
 export const purchaseProducts = () => (dispatch, getState) => {
   const state = getState()
-  const products = state.getIn(['products', 'data']).toJS()
+  const status = currentStatus(state)
+
+  if (status === PurchaseStatusConstants.PURCHASE_IN_PROGRESS) {
+    return
+  }
+
+  const products = cartProductsIds(state).toJS()
   dispatch({ type: cartActionTypes.PURCHASE_IN_PROGRESS })
   shoppingCartService.sendData(products).then(() => {
     dispatch({ type: cartActionTypes.PURCHASE_SUCCESS })

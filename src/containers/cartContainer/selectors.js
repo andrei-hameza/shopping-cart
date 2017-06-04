@@ -31,6 +31,17 @@ export function currentSorting (state) {
  * Gives the current purchase status of the cart
  *
  * @param {Immutable.Map} state
+ * @return {String} - Current status
+ */
+
+export function currentStatus (state) {
+  return state.getIn(['cart', 'status'])
+}
+
+/**
+ * Gives the current purchase status of the cart
+ *
+ * @param {Immutable.Map} state
  * @return {String} - Current purchase status
  */
 

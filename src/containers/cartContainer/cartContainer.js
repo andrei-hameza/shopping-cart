@@ -15,6 +15,7 @@ import SortingItem from '../../components/sortingItem'
 import List from '../../components/list'
 import ListItem from '../../components/listItem'
 import TotalPrice from '../../components/totalPrice'
+import Status from '../../components/status'
 
 // actions
 import {
@@ -68,7 +69,6 @@ const CartContainer = ({
     )
   })
 
-  // TODO: add status component
   // render sorting items in cart
   const sortingItems = !isHidden && R.values(SortingConstants.Types).map((id) => {
     return (
@@ -112,9 +112,10 @@ const CartContainer = ({
           title='Purchase'
           isHidden={isHidden}
           onClick={purchaseProducts} />
-        <span>
-          {status}
-        </span>
+        <Status
+          className='cart-area__status'
+          status={status}
+          isHidden={isHidden} />
       </CartAreaFooter>
     </CartArea>
   )
