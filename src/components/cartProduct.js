@@ -13,7 +13,6 @@ class CartProduct extends PureComponent {
       onAddToCart,
       onRemoveFromCart
     } = this.props
-    console.log('RENDER CartProduct', name)
 
     return (
       <div className='cart-product'>
